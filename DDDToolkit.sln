@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.15
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDDToolkit.Core", "DDDToolkit.Core\DDDToolkit.Core.csproj", "{B8FC159C-2101-43A3-B58C-DCDE1C439FB2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDDToolkit.Core", "DDDToolkit.Core\DDDToolkit.Core.csproj", "{B8FC159C-2101-43A3-B58C-DCDE1C439FB2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDDToolkit.Repository.Sql", "DDDToolkit.Repository.Sql\DDDToolkit.Repository.Sql.csproj", "{C6748BFC-81EA-4C73-9B49-EC3534BDA722}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDDToolkit.Repository.Sql", "DDDToolkit.Repository.Sql\DDDToolkit.Repository.Sql.csproj", "{C6748BFC-81EA-4C73-9B49-EC3534BDA722}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDDToolkit.ApplicationLayer", "DDDToolkit.ApplicationLayer\DDDToolkit.ApplicationLayer.csproj", "{849591EE-EEF6-4B29-97AA-34F532C2A642}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{C6748BFC-81EA-4C73-9B49-EC3534BDA722}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C6748BFC-81EA-4C73-9B49-EC3534BDA722}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C6748BFC-81EA-4C73-9B49-EC3534BDA722}.Release|Any CPU.Build.0 = Release|Any CPU
+		{849591EE-EEF6-4B29-97AA-34F532C2A642}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{849591EE-EEF6-4B29-97AA-34F532C2A642}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{849591EE-EEF6-4B29-97AA-34F532C2A642}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{849591EE-EEF6-4B29-97AA-34F532C2A642}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
