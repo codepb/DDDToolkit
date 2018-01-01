@@ -16,10 +16,10 @@ namespace DDDToolkit.Repository.Sql
         where T : AggregateRoot<TId>
         where TContext : DbContext
     {
-        protected virtual IQueryable<T> ApplyIncludes(IQueryable<T> query) => query;
-        protected virtual IQueryable<T> Queryable => ApplyIncludes(Set.AsNoTracking());
-
         public ReadableRepository(TContext dbContext) : base(dbContext) { }
+
+        protected virtual IQueryable<T> ApplyIncludes(IQueryable<T> query) => query.IncludeEverything();
+        protected virtual IQueryable<T> Queryable => ApplyIncludes(Set.AsNoTracking());
 
         public Task<IReadOnlyCollection<T>> GetAll()
         {
