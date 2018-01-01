@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DDDToolkit.ApplicationLayer\DDDToolkit.ApplicationLayer.csproj" />
     <ProjectReference Include="..\DDDToolkit.Core\DDDToolkit.Core.csproj" />
   </ItemGroup>
 
