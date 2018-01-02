@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDDToolkit.Core", "DDDToolk
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDDToolkit.Repository.Sql", "DDDToolkit.Repository.Sql\DDDToolkit.Repository.Sql.csproj", "{C6748BFC-81EA-4C73-9B49-EC3534BDA722}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDDToolkit.ApplicationLayer", "DDDToolkit.ApplicationLayer\DDDToolkit.ApplicationLayer.csproj", "{849591EE-EEF6-4B29-97AA-34F532C2A642}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDDToolkit.ApplicationLayer", "DDDToolkit.ApplicationLayer\DDDToolkit.ApplicationLayer.csproj", "{849591EE-EEF6-4B29-97AA-34F532C2A642}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDDToolkit.TestApp", "DDDToolkit.TestApp\DDDToolkit.TestApp.csproj", "{3C516DB4-C684-4229-93E4-F301ACCD3890}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{849591EE-EEF6-4B29-97AA-34F532C2A642}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{849591EE-EEF6-4B29-97AA-34F532C2A642}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{849591EE-EEF6-4B29-97AA-34F532C2A642}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C516DB4-C684-4229-93E4-F301ACCD3890}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C516DB4-C684-4229-93E4-F301ACCD3890}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C516DB4-C684-4229-93E4-F301ACCD3890}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C516DB4-C684-4229-93E4-F301ACCD3890}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
