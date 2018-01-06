@@ -29,7 +29,7 @@ namespace DDDToolkit.Core
             return events;
         }
 
-        public void Apply(IDomainEvent @event, bool isNew = true)
+        protected void Apply(IDomainEvent @event, bool isNew = true)
         {
             Version++;
             @event.Version = Version;
@@ -60,7 +60,7 @@ namespace DDDToolkit.Core
             }
             else
             {
-                var interfaces = @event.GetType().GetTypeInfo().ImplementedInterfaces;
+                var interfaces = @event.GetType().GetTypeInfo().ImplementedInterfaces.Where(t => t != type);
                 foreach(var implementedInterface in interfaces)
                 {
                     if(CallEventHandler(@event, implementedInterface))

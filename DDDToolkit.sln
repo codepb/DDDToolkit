@@ -9,7 +9,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDDToolkit.Repository.Sql",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDDToolkit.ApplicationLayer", "DDDToolkit.ApplicationLayer\DDDToolkit.ApplicationLayer.csproj", "{849591EE-EEF6-4B29-97AA-34F532C2A642}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDDToolkit.TestApp", "DDDToolkit.TestApp\DDDToolkit.TestApp.csproj", "{3C516DB4-C684-4229-93E4-F301ACCD3890}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDDToolkit.TestApp", "DDDToolkit.TestApp\DDDToolkit.TestApp.csproj", "{3C516DB4-C684-4229-93E4-F301ACCD3890}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{EF054C6D-056E-417A-A40A-376A20DF90A6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{57967491-B4BB-44B9-B270-6533A1E388B0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDDToolkit.Core.Tests", "DDDToolkit.Core.Tests\DDDToolkit.Core.Tests.csproj", "{4E33A86B-6589-4501-A43A-F5A9E31AD35F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,9 +39,19 @@ Global
 		{3C516DB4-C684-4229-93E4-F301ACCD3890}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3C516DB4-C684-4229-93E4-F301ACCD3890}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3C516DB4-C684-4229-93E4-F301ACCD3890}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E33A86B-6589-4501-A43A-F5A9E31AD35F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E33A86B-6589-4501-A43A-F5A9E31AD35F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E33A86B-6589-4501-A43A-F5A9E31AD35F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E33A86B-6589-4501-A43A-F5A9E31AD35F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B8FC159C-2101-43A3-B58C-DCDE1C439FB2} = {EF054C6D-056E-417A-A40A-376A20DF90A6}
+		{C6748BFC-81EA-4C73-9B49-EC3534BDA722} = {EF054C6D-056E-417A-A40A-376A20DF90A6}
+		{849591EE-EEF6-4B29-97AA-34F532C2A642} = {EF054C6D-056E-417A-A40A-376A20DF90A6}
+		{4E33A86B-6589-4501-A43A-F5A9E31AD35F} = {57967491-B4BB-44B9-B270-6533A1E388B0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E3DCC906-DD65-4478-A617-AC943C719834}

@@ -3,6 +3,7 @@ using DDDToolkit.Core.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -33,7 +34,7 @@ namespace DDDToolkit.Repository.Sql
             return _readableRepository.GetById(id);
         }
 
-        public Task<IReadOnlyCollection<T>> Query(Func<T, bool> query)
+        public Task<IReadOnlyCollection<T>> Query(Expression<Func<T, bool>> query)
         {
             return _readableRepository.Query(query);
         }
