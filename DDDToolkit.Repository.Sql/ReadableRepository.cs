@@ -37,9 +37,9 @@ namespace DDDToolkit.Repository.Sql
             return Queryable.FirstOrDefaultAsync(eLambda);
         }
 
-        public Task<IReadOnlyCollection<T>> Query(Func<T, bool> query)
+        public Task<IReadOnlyCollection<T>> Query(Expression<Func<T, bool>> query)
         {
-            return Task.FromResult(Set.Where(query).ToList()).AsTaskOf<List<T>, IReadOnlyCollection<T>>();
+            return Set.Where(query).ToListAsync().AsTaskOf<List<T>, IReadOnlyCollection<T>>();
         }
     }
 }
