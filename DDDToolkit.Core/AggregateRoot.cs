@@ -18,6 +18,11 @@ namespace DDDToolkit.Core
             _eventHandler = new EventHandler(this);
         }
 
+        public void SetId(T id)
+        {
+            Id = id;
+        }
+
         public IReadOnlyCollection<IDomainEvent> DequeueAllEvents()
         {
             return _eventQueue.Dequeue();
