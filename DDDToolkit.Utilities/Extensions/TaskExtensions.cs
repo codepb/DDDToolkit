@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
 
-namespace DDDToolkit.Repository.Sql.Extensions
+namespace DDDToolkit.Utilities.Extensions
 {
-    internal static class TaskExtensions
+    public static class TaskExtensions
     {
         public static Task<TResult> AsTaskOf<T, TResult>(this Task<T> task)
         where T : TResult

@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using DDDToolkit.Core;
 using DDDToolkit.Core.Repositories;
-using DDDToolkit.Core;
+using DDDToolkit.EntityFramework.Extensions;
+using DDDToolkit.Utilities.Extensions;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
 using System.Linq;
-using DDDToolkit.Repository.Sql.Extensions;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 
 namespace DDDToolkit.Repository.Sql
 {
@@ -21,10 +22,7 @@ namespace DDDToolkit.Repository.Sql
         protected virtual IQueryable<T> ApplyIncludes(IQueryable<T> query) => query.IncludeEverything();
         protected virtual IQueryable<T> Queryable => ApplyIncludes(Set.AsNoTracking());
 
-        public Task<IReadOnlyCollection<T>> GetAll()
-        {
-            return Set.ToListAsync().AsTaskOf<List<T>, IReadOnlyCollection<T>>();
-        }
+        public Task<IReadOnlyCollection<T>> GetAll() => Set.ToListAsync().AsTaskOf<List<T>, IReadOnlyCollection<T>>();
 
         public Task<T> GetById(TId id)
         {

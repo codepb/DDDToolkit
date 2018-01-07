@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace DDDToolkit.Core
+﻿namespace DDDToolkit.Core
 {
     interface IEventHandler
     {

@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using DDDToolkit.Core;
+using System.Collections.Generic;
 using System.Threading.Tasks;
-using DDDToolkit.Core;
 
 namespace DDDToolkit.ApplicationLayer
 {

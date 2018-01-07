@@ -1,9 +1,7 @@
 ﻿using DDDToolkit.ApplicationLayer.Transactions;
-using DDDToolkit.Core;
 using DDDToolkit.Core.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace DDDToolkit.Repository.Sql.Transactions
