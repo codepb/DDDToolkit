@@ -61,5 +61,25 @@ namespace DDDToolkit.Core.Tests
 
             _aggregateRoot.FallbackHandlerCalled.Should().BeTrue();
         }
+
+        [Fact]
+        public void IncrementVersionByOne()
+        {
+            var initialVersion = _aggregateRoot.Version;
+
+            _aggregateRoot.ApplyEvent(new TestDomainEvent());
+
+            _aggregateRoot.Version.Should().Be(initialVersion + 1);
+        }
+
+        [Fact]
+        public void SetEventVersionToAggregateVersion()
+        {
+            var @event = new TestDomainEvent();
+
+            _aggregateRoot.ApplyEvent(@event);
+
+            @event.Version.Should().Be(_aggregateRoot.Version);
+    }
     }
 }
