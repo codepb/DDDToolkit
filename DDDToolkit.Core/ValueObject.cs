@@ -4,14 +4,14 @@ using System.Reflection;
 
 namespace DDDToolkit.Core
 {
-    public abstract class ValueObject<T> : IEquatable<T> where T : ValueObject<T>
+    public abstract class ValueObject : IValueObject
     {
         public override bool Equals(object obj)
         {
             if (obj == null)
                 return false;
 
-            T other = obj as T;
+            var other = obj as IValueObject;
 
             return Equals(other);
         }
@@ -36,7 +36,7 @@ namespace DDDToolkit.Core
             return hashCode;
         }
 
-        public virtual bool Equals(T other)
+        public virtual bool Equals(IValueObject other)
         {
             if (other == null)
                 return false;
@@ -82,12 +82,12 @@ namespace DDDToolkit.Core
             return properties;
         }
 
-        public static bool operator ==(ValueObject<T> x, ValueObject<T> y)
+        public static bool operator ==(ValueObject x, ValueObject y)
         {
             return x.Equals(y);
         }
 
-        public static bool operator !=(ValueObject<T> x, ValueObject<T> y)
+        public static bool operator !=(ValueObject x, ValueObject y)
         {
             return !(x == y);
         }

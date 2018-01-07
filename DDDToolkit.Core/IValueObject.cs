@@ -4,8 +4,7 @@ using System.Text;
 
 namespace DDDToolkit.Core
 {
-    public class DomainEvent : IDomainEvent
+    public interface IValueObject : IEquatable<IValueObject>
     {
-        public int Version { get; set; }
     }
 }

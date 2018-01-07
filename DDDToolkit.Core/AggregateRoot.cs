@@ -9,24 +9,18 @@ namespace DDDToolkit.Core
 {
     public abstract class AggregateRoot<T> : Entity<T>
     {
-        private readonly List<IDomainEvent> _eventsPendingPersistence = new List<IDomainEvent>();
-        private readonly Dictionary<Type, MethodInfo> _handleMethods;
+        private readonly IEventQueue<IDomainEvent> _eventQueue = new EventQueue<IDomainEvent>();
+        private readonly IEventHandler _eventHandler;
         public int Version { get; private set; }
 
         protected AggregateRoot()
         {
-            _handleMethods = GetType()
-                .GetMethods(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.FlattenHierarchy)
-                .Where(IsEligibleMethod)
-                .ToDictionary(m => m.GetParameters()[0].ParameterType);
+            _eventHandler = new EventHandler(this);
         }
 
         public IReadOnlyCollection<IDomainEvent> DequeueAllEvents()
         {
-            var events = _eventsPendingPersistence.ToList();
-
-            _eventsPendingPersistence.Clear();
-            return events;
+            return _eventQueue.Dequeue();
         }
 
         protected void Apply(IDomainEvent @event, bool isNew = true)
@@ -38,44 +32,15 @@ namespace DDDToolkit.Core
 
             if(isNew)
             {
-                _eventsPendingPersistence.Add(@event);
-            }
-        }
-        
-        private void CallEventHandler(IDomainEvent @event)
-        {
-            CallEventHandler(@event, @event.GetType());
-        }
-        
-        private bool CallEventHandler(IDomainEvent @event, Type type)
-        {
-            if (_handleMethods.ContainsKey(type))
-            {
-                _handleMethods[type].Invoke(this, new object[] { @event });
-                return true;
-            }
-            else if(type.GetTypeInfo().BaseType != null)
-            {
-                return CallEventHandler(@event, type.GetTypeInfo().BaseType);
-            }
-            else
-            {
-                var interfaces = @event.GetType().GetTypeInfo().ImplementedInterfaces.Where(t => t != type);
-                foreach(var implementedInterface in interfaces)
-                {
-                    if(CallEventHandler(@event, implementedInterface))
-                    {
-                        return true;
-                    }
-                }
-                return false;
+                _eventQueue.Enqueue(@event);
             }
         }
 
-        private static bool IsEligibleMethod(MethodInfo method)
+        private void CallEventHandler(IDomainEvent @event)
         {
-            return method.Name == "Handle" &&
-                   method.GetParameters().Length == 1;
+            _eventHandler.Handle(@event);
         }
+
+        
     }
 }

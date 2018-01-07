@@ -3,18 +3,18 @@ using System.Collections.Generic;
 
 namespace DDDToolkit.Core
 {
-    public abstract class Entity<T> : IEquatable<Entity<T>>
+    public abstract class Entity<T> : IEntity<T>
     {
         public T Id { get; protected set; }
 
         public override bool Equals(object obj)
         {
-            return Equals(obj as Entity<T>);
+            return Equals(obj as IEntity<T>);
         }
 
-        public bool Equals(Entity<T> other)
+        public bool Equals(IEntity<T> other)
         {
-            return other != null &&
+            return other != null && other.GetType() == GetType() &&
                    EqualityComparer<T>.Default.Equals(Id, other.Id);
         }
 

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DDDToolkit.Core
+namespace DDDToolkit.Core.Tests
 {
-    public class DomainEvent : IDomainEvent
+    class NestedEventInterface : INestedEventInterface
     {
         public int Version { get; set; }
     }

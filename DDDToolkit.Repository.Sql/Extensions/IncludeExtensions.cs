@@ -51,7 +51,7 @@ namespace DDDToolkit.Repository.Sql.Extensions
         private static bool IsValueType(Type type) =>
             type.BaseType != null
             && type.BaseType.IsGenericType
-            && type.BaseType.GetGenericTypeDefinition() == typeof(ValueObject<>);
+            && type.BaseType.GetGenericTypeDefinition() == typeof(IValueObject);
             
 
         private static Type GetPropertyType(Type type)

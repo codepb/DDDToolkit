@@ -53,5 +53,13 @@ namespace DDDToolkit.Core.Tests
 
             _aggregateRoot.FallbackHandlerCalled.Should().BeFalse();
         }
+
+        [Fact]
+        public void CallTheHandlerForTheBaseInterfaceWhenNoOtherHandlerDefined()
+        {
+            _aggregateRoot.ApplyEvent(new NestedEventInterface());
+
+            _aggregateRoot.FallbackHandlerCalled.Should().BeTrue();
+        }
     }
 }
