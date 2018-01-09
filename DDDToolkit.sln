@@ -9,8 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDDToolkit.Repository.Sql",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDDToolkit.ApplicationLayer", "DDDToolkit.ApplicationLayer\DDDToolkit.ApplicationLayer.csproj", "{849591EE-EEF6-4B29-97AA-34F532C2A642}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDDToolkit.TestApp", "DDDToolkit.TestApp\DDDToolkit.TestApp.csproj", "{3C516DB4-C684-4229-93E4-F301ACCD3890}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{EF054C6D-056E-417A-A40A-376A20DF90A6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{57967491-B4BB-44B9-B270-6533A1E388B0}"
@@ -19,9 +17,23 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDDToolkit.Core.Tests", "DD
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDDToolkit.API", "DDDToolkit.API\DDDToolkit.API.csproj", "{12926EE6-E9DF-4143-B1B6-016F9DE490DA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDDToolkit.Utilities", "DDDToolkit.Utilities\DDDToolkit.Utilities.csproj", "{0E06C087-FF39-4382-910C-2EC303FC4DA0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDDToolkit.Utilities", "DDDToolkit.Utilities\DDDToolkit.Utilities.csproj", "{0E06C087-FF39-4382-910C-2EC303FC4DA0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDDToolkit.EntityFramework.Extensions", "DDDToolkit.EntityFramework.Extensions\DDDToolkit.EntityFramework.Extensions.csproj", "{6F2563E8-BCF6-4751-9B23-4CE8426CFE42}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDDToolkit.EntityFramework.Extensions", "DDDToolkit.EntityFramework.Extensions\DDDToolkit.EntityFramework.Extensions.csproj", "{6F2563E8-BCF6-4751-9B23-4CE8426CFE42}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{175A537D-B6E1-4194-8895-D1870CF866E2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "library", "library", "{BDD881C3-118B-42D6-9D77-DDAB213CA4B0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDDToolkit.Samples.Library.Domain", "DDDToolkit.Samples.Library.Domain\DDDToolkit.Samples.Library.Domain.csproj", "{0EE67288-75C3-4BEC-807E-A70E24F80219}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDDToolkit.Samples.Library.Repository.Sql", "DDDToolkit.Samples.Library.Repository.Sql\DDDToolkit.Samples.Library.Repository.Sql.csproj", "{BB5E4EA9-80CB-4BBD-B572-1D804D1366C0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDDToolkit.Samples.Library.Application", "DDDToolkit.Samples.Library.Application\DDDToolkit.Samples.Library.Application.csproj", "{95D67484-5CDD-4CA2-8457-B4A5D42D4D3C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDDToolkit.Samples.Library.UI.Web", "DDDToolkit.Samples.Library.UI.Web\DDDToolkit.Samples.Library.UI.Web.csproj", "{6DD4F5BC-B48B-43A6-A048-28F8BD04D7F6}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "DDDToolkit.Samples.Library.Repository.Database", "DDDToolkit.Samples.Library.Repository.Database\DDDToolkit.Samples.Library.Repository.Database.sqlproj", "{1D41D8D2-B6A5-47DD-8E98-9512EC48B429}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +53,6 @@ Global
 		{849591EE-EEF6-4B29-97AA-34F532C2A642}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{849591EE-EEF6-4B29-97AA-34F532C2A642}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{849591EE-EEF6-4B29-97AA-34F532C2A642}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3C516DB4-C684-4229-93E4-F301ACCD3890}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3C516DB4-C684-4229-93E4-F301ACCD3890}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3C516DB4-C684-4229-93E4-F301ACCD3890}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3C516DB4-C684-4229-93E4-F301ACCD3890}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4E33A86B-6589-4501-A43A-F5A9E31AD35F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4E33A86B-6589-4501-A43A-F5A9E31AD35F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E33A86B-6589-4501-A43A-F5A9E31AD35F}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -61,6 +69,28 @@ Global
 		{6F2563E8-BCF6-4751-9B23-4CE8426CFE42}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6F2563E8-BCF6-4751-9B23-4CE8426CFE42}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6F2563E8-BCF6-4751-9B23-4CE8426CFE42}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0EE67288-75C3-4BEC-807E-A70E24F80219}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0EE67288-75C3-4BEC-807E-A70E24F80219}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0EE67288-75C3-4BEC-807E-A70E24F80219}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0EE67288-75C3-4BEC-807E-A70E24F80219}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB5E4EA9-80CB-4BBD-B572-1D804D1366C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB5E4EA9-80CB-4BBD-B572-1D804D1366C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB5E4EA9-80CB-4BBD-B572-1D804D1366C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB5E4EA9-80CB-4BBD-B572-1D804D1366C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95D67484-5CDD-4CA2-8457-B4A5D42D4D3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95D67484-5CDD-4CA2-8457-B4A5D42D4D3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95D67484-5CDD-4CA2-8457-B4A5D42D4D3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95D67484-5CDD-4CA2-8457-B4A5D42D4D3C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DD4F5BC-B48B-43A6-A048-28F8BD04D7F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DD4F5BC-B48B-43A6-A048-28F8BD04D7F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DD4F5BC-B48B-43A6-A048-28F8BD04D7F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DD4F5BC-B48B-43A6-A048-28F8BD04D7F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D41D8D2-B6A5-47DD-8E98-9512EC48B429}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D41D8D2-B6A5-47DD-8E98-9512EC48B429}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D41D8D2-B6A5-47DD-8E98-9512EC48B429}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{1D41D8D2-B6A5-47DD-8E98-9512EC48B429}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D41D8D2-B6A5-47DD-8E98-9512EC48B429}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D41D8D2-B6A5-47DD-8E98-9512EC48B429}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -73,6 +103,12 @@ Global
 		{12926EE6-E9DF-4143-B1B6-016F9DE490DA} = {EF054C6D-056E-417A-A40A-376A20DF90A6}
 		{0E06C087-FF39-4382-910C-2EC303FC4DA0} = {EF054C6D-056E-417A-A40A-376A20DF90A6}
 		{6F2563E8-BCF6-4751-9B23-4CE8426CFE42} = {EF054C6D-056E-417A-A40A-376A20DF90A6}
+		{BDD881C3-118B-42D6-9D77-DDAB213CA4B0} = {175A537D-B6E1-4194-8895-D1870CF866E2}
+		{0EE67288-75C3-4BEC-807E-A70E24F80219} = {BDD881C3-118B-42D6-9D77-DDAB213CA4B0}
+		{BB5E4EA9-80CB-4BBD-B572-1D804D1366C0} = {BDD881C3-118B-42D6-9D77-DDAB213CA4B0}
+		{95D67484-5CDD-4CA2-8457-B4A5D42D4D3C} = {BDD881C3-118B-42D6-9D77-DDAB213CA4B0}
+		{6DD4F5BC-B48B-43A6-A048-28F8BD04D7F6} = {BDD881C3-118B-42D6-9D77-DDAB213CA4B0}
+		{1D41D8D2-B6A5-47DD-8E98-9512EC48B429} = {BDD881C3-118B-42D6-9D77-DDAB213CA4B0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E3DCC906-DD65-4478-A617-AC943C719834}
