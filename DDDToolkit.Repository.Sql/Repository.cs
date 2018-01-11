@@ -1,11 +1,13 @@
 ﻿using DDDToolkit.Core;
+using DDDToolkit.Core.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 
 namespace DDDToolkit.Repository.Sql
 {
     public class Repository<T, TId, TContext> 
-        : ReadableRepository<T, TId, TContext>
+        : ReadableRepository<T, TId, TContext>,
+        IRepository<T, TId>
         where T : AggregateRoot<TId>
         where TContext : DbContext
     {

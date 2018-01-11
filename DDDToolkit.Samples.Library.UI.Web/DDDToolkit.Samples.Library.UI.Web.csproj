@@ -21,11 +21,21 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\components\BookForm.tsx" />
+    <None Remove="ClientApp\components\CreateBook.tsx" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\DDDToolkit.API\DDDToolkit.API.csproj" />
     <ProjectReference Include="..\DDDToolkit.Repository.Sql\DDDToolkit.Repository.Sql.csproj" />
     <ProjectReference Include="..\DDDToolkit.Samples.Library.Application\DDDToolkit.Samples.Library.Application.csproj" />
     <ProjectReference Include="..\DDDToolkit.Samples.Library.Domain\DDDToolkit.Samples.Library.Domain.csproj" />
     <ProjectReference Include="..\DDDToolkit.Samples.Library.Repository.Sql\DDDToolkit.Samples.Library.Repository.Sql.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\components\BookForm.tsx" />
+    <TypeScriptCompile Include="ClientApp\components\CreateBook.tsx" />
   </ItemGroup>
 
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">

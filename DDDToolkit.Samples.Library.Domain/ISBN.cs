@@ -1,4 +1,5 @@
 ﻿using DDDToolkit.Core;
+using Newtonsoft.Json;
 using System;
 using System.Text.RegularExpressions;
 
@@ -11,13 +12,14 @@ namespace DDDToolkit.Samples.Library.Domain
 
         protected ISBN() { }
 
-        public ISBN(string isbn)
+        [JsonConstructor]
+        public ISBN(string value)
         {
-            if(!IsValid(isbn))
+            if(!IsValid(value))
             {
-                throw new ArgumentException($"{isbn} is not a valid ISBN.", nameof(isbn));
+                throw new ArgumentException($"{value} is not a valid ISBN.", nameof(value));
             }
-            _value = isbn;
+            _value = value;
         }
 
         public static bool IsValid(string isbn)

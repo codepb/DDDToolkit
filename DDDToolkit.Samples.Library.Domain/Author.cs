@@ -1,4 +1,5 @@
 ﻿using DDDToolkit.Core;
+using Newtonsoft.Json;
 
 namespace DDDToolkit.Samples.Library.Domain
 {
@@ -12,6 +13,7 @@ namespace DDDToolkit.Samples.Library.Domain
 
         protected Author() { }
 
+        [JsonConstructor]
         public Author(string firstName, string lastName)
         {
             _firstName = firstName;
