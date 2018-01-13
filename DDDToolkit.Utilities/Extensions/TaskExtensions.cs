@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace DDDToolkit.Utilities.Extensions
 {
@@ -21,8 +23,13 @@ namespace DDDToolkit.Utilities.Extensions
             public Task<TResult> To<TResult>()
                 where TResult : class
             {
+                if (!typeof(TResult).IsAssignableFrom(typeof(T)))
+                {
+                    throw new InvalidOperationException($"{typeof(TResult).Name} is not assignable from {typeof(T).Name}");
+                }
                 return _task.ContinueWith(t => t.Result as TResult);
             }
         }
+
     }
 }
