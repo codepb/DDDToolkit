@@ -1,11 +1,13 @@
-﻿using System;
+﻿using DDDToolkit.Core.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace DDDToolkit.Core.Repositories
 {
-    public interface IReadableRepository<T, TId> where T : AggregateRoot<TId>
+    public interface IReadableRepository<T, TId>
+        where T : IAggregateRoot<TId>
     {
         Task<IReadOnlyCollection<T>> GetAll();
         Task<IReadOnlyCollection<T>> Query(Expression<Func<T, bool>> query);

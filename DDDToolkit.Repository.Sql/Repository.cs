@@ -1,4 +1,5 @@
 ﻿using DDDToolkit.Core;
+using DDDToolkit.Core.Interfaces;
 using DDDToolkit.Core.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
@@ -8,7 +9,7 @@ namespace DDDToolkit.Repository.Sql
     public class Repository<T, TId, TContext> 
         : ReadableRepository<T, TId, TContext>,
         IRepository<T, TId>
-        where T : AggregateRoot<TId>
+        where T : class, IAggregateRoot<TId>
         where TContext : DbContext
     {
         private WritableRepository<T, TId, TContext> _writableRepository;

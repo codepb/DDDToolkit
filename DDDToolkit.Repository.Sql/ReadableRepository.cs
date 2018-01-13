@@ -1,4 +1,5 @@
 ﻿using DDDToolkit.Core;
+using DDDToolkit.Core.Interfaces;
 using DDDToolkit.Core.Repositories;
 using DDDToolkit.EntityFramework.Extensions;
 using DDDToolkit.Utilities.Extensions;
@@ -14,7 +15,7 @@ namespace DDDToolkit.Repository.Sql
     public class ReadableRepository<T, TId, TContext>
         : EntityFrameworkRepositoryBase<T, TContext>
         , IReadableRepository<T, TId>
-        where T : AggregateRoot<TId>
+        where T : class, IAggregateRoot<TId>
         where TContext : DbContext
     {
         public ReadableRepository(TContext dbContext) : base(dbContext) { }
@@ -22,7 +23,7 @@ namespace DDDToolkit.Repository.Sql
         protected virtual IQueryable<T> ApplyIncludes(IQueryable<T> query) => query.IncludeEverything();
         protected virtual IQueryable<T> Queryable => ApplyIncludes(Set.AsNoTracking());
 
-        public Task<IReadOnlyCollection<T>> GetAll() => Set.ToListAsync().AsTaskOf<List<T>, IReadOnlyCollection<T>>();
+        public Task<IReadOnlyCollection<T>> GetAll() => Set.ToListAsync().ConvertTask().To<IReadOnlyCollection<T>>();
 
         public Task<T> GetById(TId id)
         {
@@ -37,7 +38,7 @@ namespace DDDToolkit.Repository.Sql
 
         public Task<IReadOnlyCollection<T>> Query(Expression<Func<T, bool>> query)
         {
-            return Set.Where(query).ToListAsync().AsTaskOf<List<T>, IReadOnlyCollection<T>>();
+            return Set.Where(query).ToListAsync().ConvertTask().To<IReadOnlyCollection<T>>();
         }
     }
 }

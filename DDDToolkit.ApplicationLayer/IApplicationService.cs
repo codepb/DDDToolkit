@@ -1,10 +1,12 @@
 ﻿using DDDToolkit.Core;
+using DDDToolkit.Core.Interfaces;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace DDDToolkit.ApplicationLayer
 {
-    public interface IApplicationService<T, TId> where T : AggregateRoot<TId>
+    public interface IApplicationService<T, TId>
+        where T : IAggregateRoot<TId>
     {
         Task Add(T aggregate);
         Task Delete(TId id);

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace DDDToolkit.Core
+namespace DDDToolkit.Core.Queues
 {
     internal interface IEventQueue<T>
     {

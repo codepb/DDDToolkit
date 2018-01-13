@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DDDToolkit.Core
+namespace DDDToolkit.Core.Interfaces
 {
     public interface IEntity<T> : IEquatable<IEntity<T>>
     {

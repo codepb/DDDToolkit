@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DDDToolkit.Core.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 
@@ -9,7 +10,9 @@ namespace DDDToolkit.Core
         public override bool Equals(object obj)
         {
             if (obj == null)
+            {
                 return false;
+            }
 
             var other = obj as IValueObject;
 
@@ -39,20 +42,24 @@ namespace DDDToolkit.Core
         public virtual bool Equals(IValueObject other)
         {
             if (other == null)
+            {
                 return false;
+            }
 
-            Type t = GetType();
-            Type otherType = other.GetType();
+            var t = GetType();
+            var otherType = other.GetType();
 
             if (t != otherType)
-                return false;
-
-            PropertyInfo[] properties = t.GetProperties(BindingFlags.Instance | BindingFlags.Public);
-
-            foreach (PropertyInfo property in properties)
             {
-                object value1 = property.GetValue(other);
-                object value2 = property.GetValue(this);
+                return false;
+            }
+
+            var properties = GetProperties();
+
+            foreach (var property in properties)
+            {
+                var value1 = property.GetValue(other);
+                var value2 = property.GetValue(this);
 
                 if (value1 == null)
                 {
@@ -60,7 +67,9 @@ namespace DDDToolkit.Core
                         return false;
                 }
                 else if (!value1.Equals(value2))
+                {
                     return false;
+                }
             }
 
             return true;
@@ -70,20 +79,16 @@ namespace DDDToolkit.Core
         {
             Type t = GetType();
 
-            List<PropertyInfo> properties = new List<PropertyInfo>();
-
-            while (t != typeof(object))
-            {
-                properties.AddRange(t.GetProperties(BindingFlags.Instance | BindingFlags.Public));
-
-                t = t.GetTypeInfo().BaseType;
-            }
-
-            return properties;
+            return t.GetProperties(BindingFlags.Instance | BindingFlags.Public);
         }
 
         public static bool operator ==(ValueObject x, ValueObject y)
         {
+            if((object)x == null)
+            {
+                return (object)y == null;
+            }
+
             return x.Equals(y);
         }
 

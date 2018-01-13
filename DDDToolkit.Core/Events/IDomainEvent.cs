@@ -1,4 +1,4 @@
-﻿namespace DDDToolkit.Core
+﻿namespace DDDToolkit.Core.Events
 {
     public interface IDomainEvent
     {

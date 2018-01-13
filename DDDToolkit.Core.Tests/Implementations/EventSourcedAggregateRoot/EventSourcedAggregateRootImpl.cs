@@ -1,6 +1,8 @@
-﻿namespace DDDToolkit.Core.Tests
+﻿using DDDToolkit.Core.Events;
+
+namespace DDDToolkit.Core.Tests
 {
-    class AggregateRootImpl<T> : AggregateRoot<T>
+    class EventSourcedAggregateRootImpl<T> : EventSourcedAggregateRoot<T>
     {
         public bool TestDomainEventHandled { get; private set; }
         public bool FallbackHandlerCalled { get; private set; }

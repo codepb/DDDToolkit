@@ -1,4 +1,5 @@
 ﻿using DDDToolkit.Core;
+using DDDToolkit.Core.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

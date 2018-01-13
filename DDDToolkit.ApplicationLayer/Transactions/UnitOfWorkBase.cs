@@ -1,4 +1,5 @@
 ﻿using DDDToolkit.Core;
+using DDDToolkit.Core.Interfaces;
 using DDDToolkit.Core.Repositories;
 using System;
 using System.Collections.Generic;
@@ -40,9 +41,9 @@ namespace DDDToolkit.ApplicationLayer.Transactions
             return _repositories[typeof(T)].Value as T;
         }
 
-        public abstract IRepository<T, TId> Repository<T, TId>() where T : AggregateRoot<TId>;
-        public abstract IReadableRepository<T, TId> ReadableRepository<T, TId>() where T : AggregateRoot<TId>;
-        public abstract IWritableRepository<T, TId> WritableRepository<T, TId>() where T : AggregateRoot<TId>;
+        public abstract IRepository<T, TId> Repository<T, TId>() where T : class, IAggregateRoot<TId>;
+        public abstract IReadableRepository<T, TId> ReadableRepository<T, TId>() where T : class, IAggregateRoot<TId>;
+        public abstract IWritableRepository<T, TId> WritableRepository<T, TId>() where T : class, IAggregateRoot<TId>;
         public abstract Task Save();
     }
 }

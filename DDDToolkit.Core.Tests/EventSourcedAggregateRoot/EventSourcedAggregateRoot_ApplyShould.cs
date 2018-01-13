@@ -3,13 +3,13 @@ using Xunit;
 
 namespace DDDToolkit.Core.Tests
 {
-    public class AggregateRoot_ApplyShould
+    public class EventSourcedAggregateRoot_ApplyShould
     {
-        private readonly AggregateRootImpl<int> _aggregateRoot;
+        private readonly EventSourcedAggregateRootImpl<int> _aggregateRoot;
 
-        public AggregateRoot_ApplyShould()
+        public EventSourcedAggregateRoot_ApplyShould()
         {
-            _aggregateRoot = new AggregateRootImpl<int>();
+            _aggregateRoot = new EventSourcedAggregateRootImpl<int>();
         }
 
         [Fact]

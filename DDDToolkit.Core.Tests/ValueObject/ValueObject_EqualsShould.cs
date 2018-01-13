@@ -57,5 +57,38 @@ namespace DDDToolkit.Core.Tests.ValueObject
 
             complexValueObject1.Should().NotBe(complexValueObject2);
         }
+
+        [Fact]
+        public void BeEqualIfBothNull()
+        {
+            ValueObjectImpl valueObject1 = null;
+            ValueObjectImpl valueObject2 = null;
+
+            var test = valueObject1 == valueObject2;
+
+            test.Should().BeTrue();
+        }
+
+        [Fact]
+        public void NotBeEqualIfLeftNullAndRightNotNull()
+        {
+            ValueObjectImpl valueObject1 = null;
+            ValueObjectImpl valueObject2 = new ValueObjectImpl(2, "string", true);
+
+            var test = valueObject1 == valueObject2;
+
+            test.Should().BeFalse();
+        }
+
+        [Fact]
+        public void NotBeEqualIfLeftNotNullAndRightNull()
+        {
+            ValueObjectImpl valueObject1 = new ValueObjectImpl(2, "string", true);
+            ValueObjectImpl valueObject2 = null;
+
+            var test = valueObject1 == valueObject2;
+
+            test.Should().BeFalse();
+        }
     }
 }

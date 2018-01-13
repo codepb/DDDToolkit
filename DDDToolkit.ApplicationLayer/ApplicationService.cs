@@ -1,11 +1,12 @@
 ﻿using DDDToolkit.ApplicationLayer.Transactions;
-using DDDToolkit.Core;
+using DDDToolkit.Core.Interfaces;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace DDDToolkit.ApplicationLayer
 {
-    public class ApplicationService<T, TId> : IApplicationService<T, TId> where T : AggregateRoot<TId>
+    public class ApplicationService<T, TId> : IApplicationService<T, TId>
+        where T : class, IAggregateRoot<TId>
     {
         protected readonly IUnitOfWork _unitOfWork;
 

@@ -4,11 +4,25 @@ namespace DDDToolkit.Utilities.Extensions
 {
     public static class TaskExtensions
     {
-        public static Task<TResult> AsTaskOf<T, TResult>(this Task<T> task)
-        where T : TResult
-        where TResult : class
+        public static TaskConverter<T> ConvertTask<T>(this Task<T> task)
         {
-            return task.ContinueWith(t => t.Result as TResult);
+            return new TaskConverter<T>(task);
+        }
+
+        public class TaskConverter<T>
+        {
+            private Task<T> _task;
+
+            public TaskConverter(Task<T> task)
+            {
+                _task = task;
+            }
+
+            public Task<TResult> To<TResult>()
+                where TResult : class
+            {
+                return _task.ContinueWith(t => t.Result as TResult);
+            }
         }
     }
 }

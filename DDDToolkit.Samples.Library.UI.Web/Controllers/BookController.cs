@@ -1,10 +1,6 @@
 ﻿using DDDToolkit.API;
 using DDDToolkit.Samples.Library.Domain;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace DDDToolkit.Samples.Library.UI.Web.Controllers
 {

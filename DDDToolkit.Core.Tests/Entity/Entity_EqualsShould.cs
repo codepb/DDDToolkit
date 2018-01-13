@@ -34,5 +34,38 @@ namespace DDDToolkit.Core.Tests.Entity
 
             entity1.Should().NotBe(entity2);
         }
+
+        [Fact]
+        public void BeEqualIfBothNull()
+        {
+            EntityImpl<int> entity1 = null;
+            EntityImpl<int> entity2 = null;
+
+            var test = entity1 == entity2;
+
+            test.Should().BeTrue();
+        }
+
+        [Fact]
+        public void NotBeEqualIfLeftNullAndRightNotNull()
+        {
+            EntityImpl<int> entity1 = null;
+            EntityImpl<int> entity2 = new EntityImpl<int>(1, "someString");
+
+            var test = entity1 == entity2;
+
+            test.Should().BeFalse();
+        }
+
+        [Fact]
+        public void NotBeEqualIfLeftNotNullAndRightNull()
+        {
+            EntityImpl<int> entity1 = new EntityImpl<int>(1, "someString");
+            EntityImpl<int> entity2 = null;
+
+            var test = entity1 == entity2;
+
+            test.Should().BeFalse();
+        }
     }
 }

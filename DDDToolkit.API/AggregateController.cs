@@ -1,12 +1,12 @@
 ﻿using DDDToolkit.ApplicationLayer;
-using DDDToolkit.Core;
+using DDDToolkit.Core.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace DDDToolkit.API
 {
-    public abstract class AggregateController<T, TId> : Controller where T : AggregateRoot<TId>
+    public abstract class AggregateController<T, TId> : Controller where T : class, IAggregateRoot<TId>
     {
         private readonly IApplicationService<T, TId> _applicationService;
 

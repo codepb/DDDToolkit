@@ -1,8 +1,10 @@
-﻿using System.Threading.Tasks;
+﻿using DDDToolkit.Core.Interfaces;
+using System.Threading.Tasks;
 
 namespace DDDToolkit.Core.Repositories
 {
-    public interface IWritableRepository<T, TId> where T : AggregateRoot<TId>
+    public interface IWritableRepository<T, TId>
+        where T : IAggregateRoot<TId>
     {
         Task Add(T entity);
         Task Update(T entity);

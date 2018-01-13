@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using DDDToolkit.Core.Interfaces;
+using System.Collections.Generic;
 
 namespace DDDToolkit.Core
 {
