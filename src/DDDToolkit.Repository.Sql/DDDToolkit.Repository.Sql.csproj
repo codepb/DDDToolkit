@@ -11,6 +11,7 @@
     <PackageProjectUrl>https://github.com/codepb/DDDToolkit</PackageProjectUrl>
     <RepositoryUrl>https://github.com/codepb/DDDToolkit</RepositoryUrl>
     <PackageTags>DDD, Domain Driven Design, Entity Framework Core, SQL</PackageTags>
+    <PackageIconUrl>https://raw.githubusercontent.com/codepb/DDDToolkit/master/logo/logo.png</PackageIconUrl>
   </PropertyGroup>
 
   <ItemGroup>
