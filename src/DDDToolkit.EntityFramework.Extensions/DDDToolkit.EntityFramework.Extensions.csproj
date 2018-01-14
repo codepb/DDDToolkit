@@ -2,6 +2,15 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Paul Burgess</Authors>
+    <Company>Paul Burgess</Company>
+    <Product>DDDToolkit</Product>
+    <Description>Extensions to support working with DDDToolkit with Entity Framework Core.</Description>
+    <Copyright>Paul Burgess</Copyright>
+    <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/codepb/DDDToolkit</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/codepb/DDDToolkit</RepositoryUrl>
+    <PackageTags>DDD, Domain Driven Design, Entity Framework Core</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>

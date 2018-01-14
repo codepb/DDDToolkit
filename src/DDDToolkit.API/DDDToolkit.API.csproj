@@ -2,6 +2,16 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
+    <Authors>Paul Burgess</Authors>
+    <Company>Paul Burgess</Company>
+    <Product>DDDToolkit</Product>
+    <Copyright>Paul Burgess</Copyright>
+    <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/codepb/DDDToolkit</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/codepb/DDDToolkit</RepositoryUrl>
+    <PackageTags>DDD, Domain Driven Design, API, REST</PackageTags>
+    <PackageReleaseNotes />
+    <Description>API controller to work with DDD toolkit. Provides REST routes for CRUD operations on Aggregates.</Description>
   </PropertyGroup>
 
   <ItemGroup>
