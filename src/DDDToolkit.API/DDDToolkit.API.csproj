@@ -12,6 +12,7 @@
     <PackageTags>DDD, Domain Driven Design, API, REST</PackageTags>
     <PackageReleaseNotes />
     <Description>API controller to work with DDD toolkit. Provides REST routes for CRUD operations on Aggregates.</Description>
+    <PackageIconUrl>https://raw.githubusercontent.com/codepb/DDDToolkit/master/logo/logo.png</PackageIconUrl>
   </PropertyGroup>
 
   <ItemGroup>
