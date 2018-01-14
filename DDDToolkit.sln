@@ -3,37 +3,37 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.15
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDDToolkit.Core", "DDDToolkit.Core\DDDToolkit.Core.csproj", "{B8FC159C-2101-43A3-B58C-DCDE1C439FB2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDDToolkit.Core", "src\DDDToolkit.Core\DDDToolkit.Core.csproj", "{B8FC159C-2101-43A3-B58C-DCDE1C439FB2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDDToolkit.Repository.Sql", "DDDToolkit.Repository.Sql\DDDToolkit.Repository.Sql.csproj", "{C6748BFC-81EA-4C73-9B49-EC3534BDA722}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDDToolkit.Repository.Sql", "src\DDDToolkit.Repository.Sql\DDDToolkit.Repository.Sql.csproj", "{C6748BFC-81EA-4C73-9B49-EC3534BDA722}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDDToolkit.ApplicationLayer", "DDDToolkit.ApplicationLayer\DDDToolkit.ApplicationLayer.csproj", "{849591EE-EEF6-4B29-97AA-34F532C2A642}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDDToolkit.ApplicationLayer", "src\DDDToolkit.ApplicationLayer\DDDToolkit.ApplicationLayer.csproj", "{849591EE-EEF6-4B29-97AA-34F532C2A642}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{EF054C6D-056E-417A-A40A-376A20DF90A6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{57967491-B4BB-44B9-B270-6533A1E388B0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDDToolkit.Core.Tests", "DDDToolkit.Core.Tests\DDDToolkit.Core.Tests.csproj", "{4E33A86B-6589-4501-A43A-F5A9E31AD35F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDDToolkit.Core.Tests", "tests\DDDToolkit.Core.Tests\DDDToolkit.Core.Tests.csproj", "{4E33A86B-6589-4501-A43A-F5A9E31AD35F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDDToolkit.API", "DDDToolkit.API\DDDToolkit.API.csproj", "{12926EE6-E9DF-4143-B1B6-016F9DE490DA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDDToolkit.API", "src\DDDToolkit.API\DDDToolkit.API.csproj", "{12926EE6-E9DF-4143-B1B6-016F9DE490DA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDDToolkit.Utilities", "DDDToolkit.Utilities\DDDToolkit.Utilities.csproj", "{0E06C087-FF39-4382-910C-2EC303FC4DA0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDDToolkit.Utilities", "src\DDDToolkit.Utilities\DDDToolkit.Utilities.csproj", "{0E06C087-FF39-4382-910C-2EC303FC4DA0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDDToolkit.EntityFramework.Extensions", "DDDToolkit.EntityFramework.Extensions\DDDToolkit.EntityFramework.Extensions.csproj", "{6F2563E8-BCF6-4751-9B23-4CE8426CFE42}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDDToolkit.EntityFramework.Extensions", "src\DDDToolkit.EntityFramework.Extensions\DDDToolkit.EntityFramework.Extensions.csproj", "{6F2563E8-BCF6-4751-9B23-4CE8426CFE42}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{175A537D-B6E1-4194-8895-D1870CF866E2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "library", "library", "{BDD881C3-118B-42D6-9D77-DDAB213CA4B0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDDToolkit.Samples.Library.Domain", "DDDToolkit.Samples.Library.Domain\DDDToolkit.Samples.Library.Domain.csproj", "{0EE67288-75C3-4BEC-807E-A70E24F80219}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDDToolkit.Samples.Library.Domain", "samples\library\DDDToolkit.Samples.Library.Domain\DDDToolkit.Samples.Library.Domain.csproj", "{0EE67288-75C3-4BEC-807E-A70E24F80219}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDDToolkit.Samples.Library.Repository.Sql", "DDDToolkit.Samples.Library.Repository.Sql\DDDToolkit.Samples.Library.Repository.Sql.csproj", "{BB5E4EA9-80CB-4BBD-B572-1D804D1366C0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDDToolkit.Samples.Library.Repository.Sql", "samples\library\DDDToolkit.Samples.Library.Repository.Sql\DDDToolkit.Samples.Library.Repository.Sql.csproj", "{BB5E4EA9-80CB-4BBD-B572-1D804D1366C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDDToolkit.Samples.Library.Application", "DDDToolkit.Samples.Library.Application\DDDToolkit.Samples.Library.Application.csproj", "{95D67484-5CDD-4CA2-8457-B4A5D42D4D3C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDDToolkit.Samples.Library.Application", "samples\library\DDDToolkit.Samples.Library.Application\DDDToolkit.Samples.Library.Application.csproj", "{95D67484-5CDD-4CA2-8457-B4A5D42D4D3C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDDToolkit.Samples.Library.UI.Web", "DDDToolkit.Samples.Library.UI.Web\DDDToolkit.Samples.Library.UI.Web.csproj", "{6DD4F5BC-B48B-43A6-A048-28F8BD04D7F6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDDToolkit.Samples.Library.UI.Web", "samples\library\DDDToolkit.Samples.Library.UI.Web\DDDToolkit.Samples.Library.UI.Web.csproj", "{6DD4F5BC-B48B-43A6-A048-28F8BD04D7F6}"
 EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "DDDToolkit.Samples.Library.Repository.Database", "DDDToolkit.Samples.Library.Repository.Database\DDDToolkit.Samples.Library.Repository.Database.sqlproj", "{1D41D8D2-B6A5-47DD-8E98-9512EC48B429}"
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "DDDToolkit.Samples.Library.Repository.Database", "samples\library\DDDToolkit.Samples.Library.Repository.Database\DDDToolkit.Samples.Library.Repository.Database.sqlproj", "{1D41D8D2-B6A5-47DD-8E98-9512EC48B429}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

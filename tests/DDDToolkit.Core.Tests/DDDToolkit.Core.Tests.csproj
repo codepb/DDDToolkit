@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DDDToolkit.Core\DDDToolkit.Core.csproj" />
+    <ProjectReference Include="..\..\src\DDDToolkit.Core\DDDToolkit.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>

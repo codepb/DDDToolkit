@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DDDToolkit.ApplicationLayer\DDDToolkit.ApplicationLayer.csproj" />
+    <ProjectReference Include="..\..\..\src\DDDToolkit.ApplicationLayer\DDDToolkit.ApplicationLayer.csproj" />
     <ProjectReference Include="..\DDDToolkit.Samples.Library.Domain\DDDToolkit.Samples.Library.Domain.csproj" />
   </ItemGroup>
 

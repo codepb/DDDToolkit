@@ -26,8 +26,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DDDToolkit.API\DDDToolkit.API.csproj" />
-    <ProjectReference Include="..\DDDToolkit.Repository.Sql\DDDToolkit.Repository.Sql.csproj" />
+    <ProjectReference Include="..\..\..\src\DDDToolkit.API\DDDToolkit.API.csproj" />
+    <ProjectReference Include="..\..\..\src\DDDToolkit.ApplicationLayer\DDDToolkit.ApplicationLayer.csproj" />
+    <ProjectReference Include="..\..\..\src\DDDToolkit.Repository.Sql\DDDToolkit.Repository.Sql.csproj" />
     <ProjectReference Include="..\DDDToolkit.Samples.Library.Application\DDDToolkit.Samples.Library.Application.csproj" />
     <ProjectReference Include="..\DDDToolkit.Samples.Library.Domain\DDDToolkit.Samples.Library.Domain.csproj" />
     <ProjectReference Include="..\DDDToolkit.Samples.Library.Repository.Sql\DDDToolkit.Samples.Library.Repository.Sql.csproj" />

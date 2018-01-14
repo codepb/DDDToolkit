@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DDDToolkit.Repository.Sql\DDDToolkit.Repository.Sql.csproj" />
+    <ProjectReference Include="..\..\..\src\DDDToolkit.Repository.Sql\DDDToolkit.Repository.Sql.csproj" />
     <ProjectReference Include="..\DDDToolkit.Samples.Library.Domain\DDDToolkit.Samples.Library.Domain.csproj" />
   </ItemGroup>
 
