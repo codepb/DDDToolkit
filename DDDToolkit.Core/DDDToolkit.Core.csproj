@@ -2,6 +2,16 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard1.3</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Paul Burgess</Authors>
+    <Company />
+    <Product>DDDToolkit</Product>
+    <Description>Core set of classes to support development using DDD.</Description>
+    <Copyright>Paul Burgess</Copyright>
+    <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/codepb/DDDToolkit</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/codepb/DDDToolkit</RepositoryUrl>
+    <PackageTags>DDD, Domain Driven Design</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
