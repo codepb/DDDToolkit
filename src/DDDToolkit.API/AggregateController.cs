@@ -6,62 +6,33 @@ using System.Threading.Tasks;
 
 namespace DDDToolkit.API
 {
-    public abstract class AggregateController<T, TId> : Controller where T : class, IAggregateRoot<TId>
+    public abstract class AggregateController<T, TId> : Controller, IAggregateController<T, TId> where T : class, IAggregateRoot<TId>
     {
-        private readonly IApplicationService<T, TId> _applicationService;
+        private readonly IReadableAggregateController<T, TId> _readableAggregateController;
+        private readonly IWritableAggregateController<T, TId> _writableAggregateController;
 
         protected AggregateController(IApplicationService<T, TId> applicationService)
         {
-            _applicationService = applicationService;
+            _readableAggregateController = new ReadableAggregateControllerImpl<T, TId>(applicationService);
+            _writableAggregateController = new WritableAggregateControllerImpl<T, TId>(applicationService);
         }
 
         [HttpGet]
         [Route("{id}")]
-        public async Task<T> GetById(TId id)
-        {
-            return await _applicationService.GetById(id);
-        }
+        public Task<T> GetById(TId id) => _readableAggregateController.GetById(id);
 
         [HttpGet]
-        public async Task<IReadOnlyCollection<T>> GetAll()
-        {
-            return await _applicationService.GetAll();
-        }
+        public Task<IReadOnlyCollection<T>> GetAll() => _readableAggregateController.GetAll();
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] T aggregate)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            await _applicationService.Add(aggregate);
-
-            return NoContent();
-        }
+        public Task<IActionResult> Create([FromBody] T aggregate) => _writableAggregateController.Create(aggregate);
 
         [HttpPut]
         [Route("{id}")]
-        public async Task<IActionResult> Edit(TId id, [FromBody] T aggregate)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            await _applicationService.Update(id, aggregate);
-
-            return NoContent();
-        }
+        public Task<IActionResult> Edit(TId id, [FromBody] T aggregate) => _writableAggregateController.Edit(id, aggregate);
 
         [HttpDelete]
         [Route("{id}")]
-        public async Task<IActionResult> Delete(TId id)
-        {
-            await _applicationService.Delete(id);
-
-            return NoContent();
-        }
+        public Task<IActionResult> Delete(TId id) => _writableAggregateController.Delete(id);
     }
 }
