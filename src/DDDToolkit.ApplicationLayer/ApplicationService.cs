@@ -8,40 +8,23 @@ namespace DDDToolkit.ApplicationLayer
     public class ApplicationService<T, TId> : IApplicationService<T, TId>
         where T : class, IAggregateRoot<TId>
     {
-        protected readonly IUnitOfWork _unitOfWork;
+        private IReadableApplicationService<T, TId> _readableApplicationService;
+        private IWritableApplicationService<T, TId> _writableApplicationService;
 
         public ApplicationService(IUnitOfWork unitOfWork)
         {
-            _unitOfWork = unitOfWork;
+            _readableApplicationService = new ReadableApplicationService<T, TId>(unitOfWork);
+            _writableApplicationService = new WritableApplicationService<T, TId>(unitOfWork);
         }
 
-        public virtual Task<T> GetById(TId id)
-        {
-            return _unitOfWork.Repository<T,TId>().GetById(id);
-        }
+        public virtual Task<T> GetById(TId id) => _readableApplicationService.GetById(id);
 
-        public virtual Task<IReadOnlyCollection<T>> GetAll()
-        {
-            return _unitOfWork.Repository<T, TId>().GetAll();
-        }
+        public virtual Task<IReadOnlyCollection<T>> GetAll() => _readableApplicationService.GetAll();
 
-        public virtual async Task Add(T aggregate)
-        {
-            await _unitOfWork.Repository<T, TId>().Add(aggregate);
-            await _unitOfWork.Save();
-        }
+        public virtual Task Add(T aggregate) => _writableApplicationService.Add(aggregate);
 
-        public virtual async Task Update(TId id, T aggregate)
-        {
-            aggregate.SetId(id);
-            await _unitOfWork.Repository<T, TId>().Update(aggregate);
-            await _unitOfWork.Save();
-        }
+        public virtual Task Update(TId id, T aggregate) => _writableApplicationService.Update(id, aggregate);
 
-        public virtual async Task Delete(TId id)
-        {
-            await _unitOfWork.Repository<T, TId>().Remove(id);
-            await _unitOfWork.Save();
-        }
+        public virtual Task Delete(TId id) => _writableApplicationService.Delete(id);
     }
 }
