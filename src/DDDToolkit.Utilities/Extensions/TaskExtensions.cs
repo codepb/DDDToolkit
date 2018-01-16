@@ -6,6 +6,9 @@ namespace DDDToolkit.Utilities.Extensions
 {
     public static class TaskExtensions
     {
+        public static Task<IReadOnlyCollection<T>> ToReadOnlyCollection<T>(this Task<List<T>> task)
+            => task.ContinueWith(t => t.Result.AsReadOnly()).ConvertTask().ToTaskOf<IReadOnlyCollection<T>>();
+
         public static TaskConverter<T> ConvertTask<T>(this Task<T> task)
         {
             return new TaskConverter<T>(task);
@@ -20,7 +23,7 @@ namespace DDDToolkit.Utilities.Extensions
                 _task = task;
             }
 
-            public Task<TResult> To<TResult>()
+            public Task<TResult> ToTaskOf<TResult>()
                 where TResult : class
             {
                 if (!typeof(TResult).IsAssignableFrom(typeof(T)))
@@ -29,6 +32,10 @@ namespace DDDToolkit.Utilities.Extensions
                 }
                 return _task.ContinueWith(t => t.Result as TResult);
             }
+
+            public Task<TResult> To<TResult>()
+                where TResult : class
+                => ToTaskOf<TResult>();
         }
 
     }
