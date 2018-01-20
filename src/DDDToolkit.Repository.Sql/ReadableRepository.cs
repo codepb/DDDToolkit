@@ -1,5 +1,6 @@
 ﻿using DDDToolkit.Core;
 using DDDToolkit.Core.Interfaces;
+using DDDToolkit.Core.Querying;
 using DDDToolkit.Core.Repositories;
 using DDDToolkit.EntityFramework.Extensions;
 using DDDToolkit.Utilities.Extensions;
@@ -37,8 +38,15 @@ namespace DDDToolkit.Repository.Sql
         }
 
         public Task<IReadOnlyCollection<T>> Query(Expression<Func<T, bool>> query)
-        {
-            return Set.Where(query).ToListAsync().ToReadOnlyCollection();
-        }
+            => Where(query).Execute(Set);
+
+        public Task<IReadOnlyCollection<T>> Query(IAsyncQuery<T, TId> query)
+            => query.Execute(Set);
+
+        public IAsyncQuery<T, TId> Where(Expression<Func<T, bool>> query)
+            => EFQuery.Where<T, TId>(query);
+
+        public Task<T> FirstOrDefault(Expression<Func<T, bool>> query)
+            => Set.FirstOrDefaultAsync(query);
     }
 }

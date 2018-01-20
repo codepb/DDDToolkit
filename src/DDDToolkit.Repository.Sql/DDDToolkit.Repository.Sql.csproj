@@ -15,6 +15,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Query.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="EFQuery.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.0.1" />
   </ItemGroup>
 
