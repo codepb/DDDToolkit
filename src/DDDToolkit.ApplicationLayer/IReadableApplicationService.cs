@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using DDDToolkit.Core.Interfaces;
+using DDDToolkit.Querying;
 
 namespace DDDToolkit.ApplicationLayer
 {
@@ -8,5 +9,6 @@ namespace DDDToolkit.ApplicationLayer
     {
         Task<IReadOnlyCollection<T>> GetAll();
         Task<T> GetById(TId id);
+        Task<IReadOnlyCollection<T>> Query(IQuery<T> query);
     }
 }

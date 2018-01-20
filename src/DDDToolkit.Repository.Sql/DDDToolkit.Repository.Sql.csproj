@@ -15,6 +15,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="EFQuery.cs" />
+    <Compile Remove="Query.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.0.1" />
   </ItemGroup>
 
@@ -22,6 +27,7 @@
     <ProjectReference Include="..\DDDToolkit.ApplicationLayer\DDDToolkit.ApplicationLayer.csproj" />
     <ProjectReference Include="..\DDDToolkit.Core\DDDToolkit.Core.csproj" />
     <ProjectReference Include="..\DDDToolkit.EntityFramework.Extensions\DDDToolkit.EntityFramework.Extensions.csproj" />
+    <ProjectReference Include="..\DDDToolkit.Querying\DDDToolkit.Querying.csproj" />
     <ProjectReference Include="..\DDDToolkit.Utilities\DDDToolkit.Utilities.csproj" />
   </ItemGroup>
 

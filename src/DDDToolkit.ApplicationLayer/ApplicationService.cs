@@ -1,5 +1,6 @@
 ﻿using DDDToolkit.ApplicationLayer.Transactions;
 using DDDToolkit.Core.Interfaces;
+using DDDToolkit.Querying;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -16,6 +17,8 @@ namespace DDDToolkit.ApplicationLayer
             _readableApplicationService = new ReadableApplicationService<T, TId>(unitOfWork);
             _writableApplicationService = new WritableApplicationService<T, TId>(unitOfWork);
         }
+
+        public virtual Task<IReadOnlyCollection<T>> Query(IQuery<T> query) => _readableApplicationService.Query(query);
 
         public virtual Task<T> GetById(TId id) => _readableApplicationService.GetById(id);
 

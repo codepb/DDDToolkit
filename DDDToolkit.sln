@@ -25,15 +25,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{175A
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "library", "library", "{BDD881C3-118B-42D6-9D77-DDAB213CA4B0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDDToolkit.Samples.Library.Domain", "samples\library\DDDToolkit.Samples.Library.Domain\DDDToolkit.Samples.Library.Domain.csproj", "{0EE67288-75C3-4BEC-807E-A70E24F80219}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDDToolkit.Samples.Library.Domain", "samples\library\DDDToolkit.Samples.Library.Domain\DDDToolkit.Samples.Library.Domain.csproj", "{0EE67288-75C3-4BEC-807E-A70E24F80219}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDDToolkit.Samples.Library.Repository.Sql", "samples\library\DDDToolkit.Samples.Library.Repository.Sql\DDDToolkit.Samples.Library.Repository.Sql.csproj", "{BB5E4EA9-80CB-4BBD-B572-1D804D1366C0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDDToolkit.Samples.Library.Repository.Sql", "samples\library\DDDToolkit.Samples.Library.Repository.Sql\DDDToolkit.Samples.Library.Repository.Sql.csproj", "{BB5E4EA9-80CB-4BBD-B572-1D804D1366C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDDToolkit.Samples.Library.Application", "samples\library\DDDToolkit.Samples.Library.Application\DDDToolkit.Samples.Library.Application.csproj", "{95D67484-5CDD-4CA2-8457-B4A5D42D4D3C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDDToolkit.Samples.Library.Application", "samples\library\DDDToolkit.Samples.Library.Application\DDDToolkit.Samples.Library.Application.csproj", "{95D67484-5CDD-4CA2-8457-B4A5D42D4D3C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDDToolkit.Samples.Library.UI.Web", "samples\library\DDDToolkit.Samples.Library.UI.Web\DDDToolkit.Samples.Library.UI.Web.csproj", "{6DD4F5BC-B48B-43A6-A048-28F8BD04D7F6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDDToolkit.Samples.Library.UI.Web", "samples\library\DDDToolkit.Samples.Library.UI.Web\DDDToolkit.Samples.Library.UI.Web.csproj", "{6DD4F5BC-B48B-43A6-A048-28F8BD04D7F6}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "DDDToolkit.Samples.Library.Repository.Database", "samples\library\DDDToolkit.Samples.Library.Repository.Database\DDDToolkit.Samples.Library.Repository.Database.sqlproj", "{1D41D8D2-B6A5-47DD-8E98-9512EC48B429}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDDToolkit.Querying", "src\DDDToolkit.Querying\DDDToolkit.Querying.csproj", "{AAAF943F-C3DE-4BD5-BC2D-850E77A9B607}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -91,6 +93,10 @@ Global
 		{1D41D8D2-B6A5-47DD-8E98-9512EC48B429}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1D41D8D2-B6A5-47DD-8E98-9512EC48B429}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1D41D8D2-B6A5-47DD-8E98-9512EC48B429}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{AAAF943F-C3DE-4BD5-BC2D-850E77A9B607}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AAAF943F-C3DE-4BD5-BC2D-850E77A9B607}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AAAF943F-C3DE-4BD5-BC2D-850E77A9B607}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AAAF943F-C3DE-4BD5-BC2D-850E77A9B607}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -109,6 +115,7 @@ Global
 		{95D67484-5CDD-4CA2-8457-B4A5D42D4D3C} = {BDD881C3-118B-42D6-9D77-DDAB213CA4B0}
 		{6DD4F5BC-B48B-43A6-A048-28F8BD04D7F6} = {BDD881C3-118B-42D6-9D77-DDAB213CA4B0}
 		{1D41D8D2-B6A5-47DD-8E98-9512EC48B429} = {BDD881C3-118B-42D6-9D77-DDAB213CA4B0}
+		{AAAF943F-C3DE-4BD5-BC2D-850E77A9B607} = {EF054C6D-056E-417A-A40A-376A20DF90A6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E3DCC906-DD65-4478-A617-AC943C719834}
