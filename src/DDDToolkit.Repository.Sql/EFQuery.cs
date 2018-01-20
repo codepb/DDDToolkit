@@ -31,8 +31,8 @@ namespace DDDToolkit.Repository.Sql
             return new EFQuery<T, TId>(lambda);
         }
 
-        public Task<IReadOnlyCollection<T>> Execute(IQueryable<T> queryable)
-            => queryable.ToListAsync().ToReadOnlyCollection();
+        public Task<IReadOnlyCollection<T>> ExecuteOn(IQueryable<T> queryable)
+            => queryable.Where(_expression).ToListAsync().ToReadOnlyCollection();
     }
 
     internal static class EFQuery

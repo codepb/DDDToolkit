@@ -1,14 +1,15 @@
 ﻿using DDDToolkit.Core;
 using DDDToolkit.Core.Interfaces;
-using DDDToolkit.Core.Querying;
 using DDDToolkit.Core.Repositories;
 using DDDToolkit.EntityFramework.Extensions;
+using DDDToolkit.Querying;
 using DDDToolkit.Utilities.Extensions;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace DDDToolkit.Repository.Sql
@@ -24,9 +25,9 @@ namespace DDDToolkit.Repository.Sql
         protected virtual IQueryable<T> ApplyIncludes(IQueryable<T> query) => query.IncludeEverything();
         protected virtual IQueryable<T> Queryable => ApplyIncludes(Set.AsNoTracking());
 
-        public Task<IReadOnlyCollection<T>> GetAll() => Set.ToListAsync().ToReadOnlyCollection();
+        public Task<IReadOnlyCollection<T>> GetAll(CancellationToken cancellationToken = default(CancellationToken)) => Set.ToListAsync(cancellationToken).ToReadOnlyCollection();
 
-        public Task<T> GetById(TId id)
+        public Task<T> GetById(TId id, CancellationToken cancellationToken = default(CancellationToken))
         {
             var eId = Expression.Constant(id, typeof(TId));
             var eEntity = Expression.Parameter(typeof(T), "e");
@@ -34,19 +35,21 @@ namespace DDDToolkit.Repository.Sql
             var eEquals = Expression.Equal(eEntityId, eId);
             var eLambda = Expression.Lambda<Func<T, bool>>(eEquals, eEntity);
 
-            return Queryable.FirstOrDefaultAsync(eLambda);
+            return Queryable.FirstOrDefaultAsync(eLambda, cancellationToken);
         }
 
-        public Task<IReadOnlyCollection<T>> Query(Expression<Func<T, bool>> query)
-            => Where(query).Execute(Set);
+        public Task<IReadOnlyCollection<T>> Query(Expression<Func<T, bool>> query, CancellationToken cancellationToken = default(CancellationToken))
+            => Set.Where(query).ToReadOnlyCollectionAsync(cancellationToken);
 
-        public Task<IReadOnlyCollection<T>> Query(IAsyncQuery<T, TId> query)
-            => query.Execute(Set);
+        public Task<IReadOnlyCollection<T>> Query(IQuery<T> query, CancellationToken cancellationToken = default(CancellationToken))
+            => Set.Where(query.AsExpression()).ToReadOnlyCollectionAsync(cancellationToken);
 
-        public IAsyncQuery<T, TId> Where(Expression<Func<T, bool>> query)
-            => EFQuery.Where<T, TId>(query);
+        public Task<T> FirstOrDefault(Expression<Func<T, bool>> query, CancellationToken cancellationToken = default(CancellationToken))
+            => Set.FirstOrDefaultAsync(query, cancellationToken);
 
-        public Task<T> FirstOrDefault(Expression<Func<T, bool>> query)
-            => Set.FirstOrDefaultAsync(query);
+        public Task<T> FirstOrDefault(IQuery<T> query, CancellationToken cancellationToken = default(CancellationToken))
+            => Set.FirstOrDefaultAsync(query.AsExpression(), cancellationToken);
+
+
     }
 }

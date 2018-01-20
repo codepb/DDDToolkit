@@ -5,17 +5,13 @@
     <Authors>Paul Burgess</Authors>
     <Company>Paul Burgess</Company>
     <Product>DDDToolkit</Product>
-    <Description>Generic application services for CRUD operations with DDDToolkit.</Description>
+    <Description>Extensions to add in functionality to build queries on classes.</Description>
     <Copyright>Paul Burgess</Copyright>
     <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/codepb/DDDToolkit</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/codepb/DDDToolkit</RepositoryUrl>
-    <PackageTags>DDD, Domain Driven Design, Application Layer</PackageTags>
     <PackageIconUrl>https://raw.githubusercontent.com/codepb/DDDToolkit/master/logo/logo.png</PackageIconUrl>
+    <RepositoryUrl>https://github.com/codepb/DDDToolkit</RepositoryUrl>
+    <PackageTags>DDD, Domain Driven Design, Querying, Queries, Query</PackageTags>
   </PropertyGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\DDDToolkit.Core\DDDToolkit.Core.csproj" />
-  </ItemGroup>
 
 </Project>

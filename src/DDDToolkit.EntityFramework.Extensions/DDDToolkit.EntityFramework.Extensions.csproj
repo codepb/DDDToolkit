@@ -20,5 +20,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DDDToolkit.Core\DDDToolkit.Core.csproj" />
+    <ProjectReference Include="..\DDDToolkit.Utilities\DDDToolkit.Utilities.csproj" />
   </ItemGroup>
 </Project>
