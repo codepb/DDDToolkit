@@ -23,8 +23,8 @@ namespace DDDToolkit.Samples.Library.UI.Web.Controllers
         [Route("{firstName} {lastName}/Books")]
         public Task<IReadOnlyCollection<Book>> GetBooksByAuthor(string firstName, string lastName)
         {
-            var lastNameQuery = Query<Book>.Where(b => b.Author.LastName == lastName);
-            return _applicationService.Query(Query<Book>.Where(b => b.Author.FirstName == firstName).And(lastNameQuery));
+            var query = Query<Book>.Has(b => b.Author.FirstName).EqualTo(firstName).And().Has(b => b.Author.LastName).EqualTo(lastName);
+            return _applicationService.Query(query);
         }
     }
 }
