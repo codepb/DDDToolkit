@@ -42,13 +42,13 @@ namespace DDDToolkit.Repository.Sql
             => Set.Where(query).ToReadOnlyCollectionAsync(cancellationToken);
 
         public Task<IReadOnlyCollection<T>> Query(IQuery<T> query, CancellationToken cancellationToken = default(CancellationToken))
-            => Set.Where(query.AsExpression()).ToReadOnlyCollectionAsync(cancellationToken);
+            => Query(query.AsExpression(), cancellationToken);
 
         public Task<T> FirstOrDefault(Expression<Func<T, bool>> query, CancellationToken cancellationToken = default(CancellationToken))
-            => Set.FirstOrDefaultAsync(query, cancellationToken);
+            => Queryable.FirstOrDefaultAsync(query, cancellationToken);
 
         public Task<T> FirstOrDefault(IQuery<T> query, CancellationToken cancellationToken = default(CancellationToken))
-            => Set.FirstOrDefaultAsync(query.AsExpression(), cancellationToken);
+            => FirstOrDefault(query.AsExpression(), cancellationToken);
 
 
     }
