@@ -3,4 +3,4 @@
 
 DDD Toolkit is a collection of libraries to support development following a Domain Driven Design pattern, using dotnet standard. The libraries are designed to support development by providing the building blocks for you to build on.
 
-Find more in the [Wiki](https://github.com/codepb/react/DDDToolkit/Wiki)
+Find more in the [Wiki](https://github.com/codepb/DDDToolkit/Wiki)
