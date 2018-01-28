@@ -6,60 +6,63 @@ namespace DDDToolkit.Querying
     public class QueryBuilderExpression<T, TProp>
     {
         private Expression<Func<T, TProp>> _expression;
-        private readonly Func<IQuery<T>, IQuery<T>> _continueWith;
+        private readonly Func<Query<T>, Query<T>> _continueWith;
 
         internal QueryBuilderExpression()
         {
 
         }
 
-        internal QueryBuilderExpression(Expression<Func<T, TProp>> expression, Func<IQuery<T>, IQuery<T>> continueWith = null)
+        internal QueryBuilderExpression(Expression<Func<T, TProp>> expression, Func<Query<T>, Query<T>> continueWith = null)
         {
             _expression = expression;
             _continueWith = continueWith ?? (q => q);
         }
 
-        private QueryBuilder<T> CreateQuery(TProp other, Func<Expression, Expression, BinaryExpression> expressionCreator)
+        private Query<T> CreateQuery(TProp other, Func<Expression, Expression, BinaryExpression> expressionCreator)
         {
             var otherEntity = Expression.Constant(other, typeof(TProp));
             var expression = expressionCreator(_expression.Body, otherEntity);
             var lambda = Expression.Lambda<Func<T, bool>>(expression, _expression.Parameters);
-            return new QueryBuilder<T>(lambda);
+            return _continueWith(new Query<T>(lambda));
         }
 
-        public QueryBuilder<T> EqualTo(TProp other)
+        public Query<T> EqualTo(TProp other)
             => CreateQuery(other, Expression.Equal);
 
 
-        public QueryBuilder<T> NotEqualTo(TProp other)
+        public Query<T> NotEqualTo(TProp other)
             => CreateQuery(other, Expression.NotEqual);
 
-        public QueryBuilder<T> GreaterThan(TProp other)
+        public Query<T> GreaterThan(TProp other)
             => CreateQuery(other, Expression.GreaterThan);
 
-        public QueryBuilder<T> GreaterThanOrEqualTo(TProp other)
+        public Query<T> GreaterThanOrEqualTo(TProp other)
             => CreateQuery(other, Expression.GreaterThanOrEqual);
 
-        public QueryBuilder<T> LessThan(TProp other)
+        public Query<T> LessThan(TProp other)
             => CreateQuery(other, Expression.LessThan);
 
-        public QueryBuilder<T> LessThanOrEqualTo(TProp other)
+        public Query<T> LessThanOrEqualTo(TProp other)
             => CreateQuery(other, Expression.LessThanOrEqual);
 
-        public QueryBuilder<T> Null()
+        public Query<T> Satisfying(IQuery<TProp> query)
+            => query.AsExpression().WithParameter(_expression);
+ 
+        public Query<T> Null()
         {
             var otherEntity = Expression.Constant(null, typeof(TProp));
             var expression = Expression.Equal(_expression.Body, otherEntity);
             var lambda = Expression.Lambda<Func<T, bool>>(expression, _expression.Parameters);
-            return new QueryBuilder<T>(lambda);
+            return new Query<T>(lambda);
         }
 
-        public QueryBuilder<T> NotNull()
+        public Query<T> NotNull()
         {
             var otherEntity = Expression.Constant(null, typeof(TProp));
             var expression = Expression.NotEqual(_expression.Body, otherEntity);
             var lambda = Expression.Lambda<Func<T, bool>>(expression, _expression.Parameters);
-            return new QueryBuilder<T>(lambda);
+            return new Query<T>(lambda);
         }
     }
 }

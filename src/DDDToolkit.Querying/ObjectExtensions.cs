@@ -6,6 +6,6 @@ namespace DDDToolkit.Querying
 {
     public static class ObjectExtensions
     {
-        public static bool Evaluate<T>(this T obj, IQuery<T> query) => query.EvaluateOn(obj);
+        public static bool Satisfies<T>(this T obj, IQuery<T> query) => query.IsSatisfiedBy(obj);
     }
 }

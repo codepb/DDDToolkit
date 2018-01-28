@@ -8,6 +8,6 @@ namespace DDDToolkit.Querying
         IQuery<T> And(IQuery<T> query);
         IQuery<T> Or(IQuery<T> query);
         Expression<Func<T, bool>> AsExpression();
-        bool EvaluateOn(T subject);
+        bool IsSatisfiedBy(T subject);
     }
 }
