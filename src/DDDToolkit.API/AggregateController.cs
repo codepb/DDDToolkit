@@ -19,20 +19,20 @@ namespace DDDToolkit.API
 
         [HttpGet]
         [Route("{id}")]
-        public Task<T> GetById(TId id) => _readableAggregateController.GetById(id);
+        public virtual Task<T> GetById(TId id) => _readableAggregateController.GetById(id);
 
         [HttpGet]
-        public Task<IReadOnlyCollection<T>> GetAll() => _readableAggregateController.GetAll();
+        public virtual Task<IReadOnlyCollection<T>> GetAll() => _readableAggregateController.GetAll();
 
         [HttpPost]
-        public Task<IActionResult> Create([FromBody] T aggregate) => _writableAggregateController.Create(aggregate);
+        public virtual Task<IActionResult> Create([FromBody] T aggregate) => _writableAggregateController.Create(aggregate);
 
         [HttpPut]
         [Route("{id}")]
-        public Task<IActionResult> Edit(TId id, [FromBody] T aggregate) => _writableAggregateController.Edit(id, aggregate);
+        public virtual Task<IActionResult> Edit(TId id, [FromBody] T aggregate) => _writableAggregateController.Edit(id, aggregate);
 
         [HttpDelete]
         [Route("{id}")]
-        public Task<IActionResult> Delete(TId id) => _writableAggregateController.Delete(id);
+        public virtual Task<IActionResult> Delete(TId id) => _writableAggregateController.Delete(id);
     }
 }

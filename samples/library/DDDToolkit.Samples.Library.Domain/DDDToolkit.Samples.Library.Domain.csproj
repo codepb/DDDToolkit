@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\src\DDDToolkit.Core\DDDToolkit.Core.csproj" />
+    <ProjectReference Include="..\..\..\src\DDDToolkit.Validation\DDDToolkit.Validation.csproj" />
   </ItemGroup>
 
   <ItemGroup>
