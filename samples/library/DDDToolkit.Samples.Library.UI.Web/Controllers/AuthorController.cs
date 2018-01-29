@@ -21,10 +21,12 @@ namespace DDDToolkit.Samples.Library.UI.Web.Controllers
         }
 
         [Route("{firstName} {lastName}/Books")]
-        public Task<IReadOnlyCollection<Book>> GetBooksByAuthor(string firstName, string lastName)
+        public async Task<IReadOnlyCollection<Book>> GetBooksByAuthor(string firstName, string lastName)
         {
-            var query = Query<Book>.Has(b => b.Author.FirstName).EqualTo(firstName).And().Has(b => b.Author.LastName).EqualTo(lastName);
-            return _applicationService.Query(query);
+            var authorHasName = new AuthorHasName(firstName, lastName);
+            var query = Query<Book>.Has(b => b.Author).Satisfying(authorHasName);
+            var result = await _applicationService.Query(query);
+            return result;
         }
     }
 }

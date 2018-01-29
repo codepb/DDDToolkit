@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\DDDToolkit.Querying\DDDToolkit.Querying.csproj" />
+    <ProjectReference Include="..\..\src\DDDToolkit.Querying\DDDToolkit.Querying.csproj" />
   </ItemGroup>
 
   <ItemGroup>

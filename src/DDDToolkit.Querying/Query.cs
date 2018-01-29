@@ -12,6 +12,11 @@ namespace DDDToolkit.Querying
             _expression = expression;
         }
 
+        public Query(IQuery<T> query)
+        {
+            _expression = query.AsExpression();
+        }
+
         private Query<T> CreateNewQuery(IQuery<T> query, Func<Expression, Expression, Expression> combiner)
         {
             var e2 = query.AsExpression();
@@ -24,10 +29,16 @@ namespace DDDToolkit.Querying
 
         public IQuery<T> And(IQuery<T> query) => CreateNewQuery(query, Expression.AndAlso);
         public IQuery<T> Or(IQuery<T> query) => CreateNewQuery(query, Expression.OrElse);
+        
+        public QueryBuilderContinuation<T> And()
+            => new QueryBuilderContinuation<T>((q2) => CreateNewQuery(q2, Expression.And));
+
+        public QueryBuilderContinuation<T> Or()
+            => new QueryBuilderContinuation<T>((q2) => CreateNewQuery(q2, Expression.Or));
 
         public Expression<Func<T, bool>> AsExpression() => _expression;
 
-        public bool EvaluateOn(T subject) => AsExpression().Compile()(subject);
+        public bool IsSatisfiedBy(T subject) => AsExpression().Compile()(subject);
 
         public static Query<T> Has(Expression<Func<T, bool>> query) => new Query<T>(query);
 
@@ -35,5 +46,7 @@ namespace DDDToolkit.Querying
             => new QueryBuilderExpression<T, TProp>(expression);
 
         public static QueryBuilderExpression<T, T> Is => Has(e => e);
+
+        public static implicit operator Query<T>(Expression<Func<T, bool>> query) => new Query<T>(query);
     }
 }
