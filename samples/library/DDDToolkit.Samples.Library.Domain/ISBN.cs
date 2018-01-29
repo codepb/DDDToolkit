@@ -15,10 +15,7 @@ namespace DDDToolkit.Samples.Library.Domain
         [JsonConstructor]
         public ISBN(string value)
         {
-            if(!IsValid(value))
-            {
-                throw new ArgumentException($"{value} is not a valid ISBN.", nameof(value));
-            }
+            
             _value = value;
         }
 
