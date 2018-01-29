@@ -9,8 +9,14 @@ namespace DDDToolkit.Samples.Library.Domain
     {
         public BookValidator()
         {
-            Property(b => b.ISBN).HasRule<IsbnIsNumeric>().HasRule<IsbnIsOfValidLength>();
-            Property(b => b.Author).HasRule<AuthorHasFirstName>().HasRule<AuthorHasLastName>();
+            Property(b => b.ISBN)
+                .HasRule<IsbnIsNumeric>("ISBN is not numeric")
+                .HasRule<IsbnIsOfValidLength>();
+            Property(b => b.Author)
+                .HasRule<AuthorHasFirstName>()
+                .HasRule<AuthorHasLastName>();
+            Property(b => b.Title)
+                .HasRule(Query<string>.Is.Satisfying(s => !string.IsNullOrEmpty(s)), "Title is required");
         }
     }
 }

@@ -3,6 +3,7 @@ using DDDToolkit.API;
 using DDDToolkit.ApplicationLayer;
 using DDDToolkit.Samples.Library.Domain;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace DDDToolkit.Samples.Library.UI.Web.Controllers
 {
@@ -18,7 +19,8 @@ namespace DDDToolkit.Samples.Library.UI.Web.Controllers
         public async override Task<IActionResult> Create([FromBody] Book aggregate)
         {
             var validator = new BookValidator();
-            if(!validator.IsValid(aggregate))
+            var brokenRules = validator.Validate(aggregate);
+            if(brokenRules.Any())
             {
                 return BadRequest();
             }
