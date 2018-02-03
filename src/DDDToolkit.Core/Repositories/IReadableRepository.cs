@@ -14,6 +14,8 @@ namespace DDDToolkit.Core.Repositories
         Task<IReadOnlyCollection<T>> GetAll(CancellationToken cancellationToken = default(CancellationToken));
         Task<IReadOnlyCollection<T>> Query(Expression<Func<T, bool>> query, CancellationToken cancellationToken = default(CancellationToken));
         Task<IReadOnlyCollection<T>> Query(IQuery<T> query, CancellationToken cancellationToken = default(CancellationToken));
+        Task<IReadOnlyCollection<T>> QueryWithChildren(Expression<Func<T, bool>> query, CancellationToken cancellationToken = default(CancellationToken));
+        Task<IReadOnlyCollection<T>> QueryWithChildren(IQuery<T> query, CancellationToken cancellationToken = default(CancellationToken));
         Task<T> FirstOrDefault(Expression<Func<T, bool>> query, CancellationToken cancellationToken = default(CancellationToken));
         Task<T> FirstOrDefault(IQuery<T> query, CancellationToken cancellationToken = default(CancellationToken));
         Task<T> GetById(TId id, CancellationToken cancellationToken = default(CancellationToken));
