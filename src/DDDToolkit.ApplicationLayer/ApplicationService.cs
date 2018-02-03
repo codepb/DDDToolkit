@@ -12,8 +12,11 @@ namespace DDDToolkit.ApplicationLayer
         private IReadableApplicationService<T, TId> _readableApplicationService;
         private IWritableApplicationService<T, TId> _writableApplicationService;
 
+        protected readonly IUnitOfWork _unitOfWork;
+
         public ApplicationService(IUnitOfWork unitOfWork)
         {
+            _unitOfWork = unitOfWork;
             _readableApplicationService = new ReadableApplicationService<T, TId>(unitOfWork);
             _writableApplicationService = new WritableApplicationService<T, TId>(unitOfWork);
         }
