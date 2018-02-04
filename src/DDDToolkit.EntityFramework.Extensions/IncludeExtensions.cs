@@ -29,7 +29,7 @@ namespace DDDToolkit.EntityFramework.Extensions
 
             if (entityProperties.Count == 0 && valueProperties.Count == 0)
             {
-                return new[] { rootPath };
+                return string.IsNullOrEmpty(rootPath) ? new string[0] : new[] { rootPath };
             }
 
             return entityProperties
