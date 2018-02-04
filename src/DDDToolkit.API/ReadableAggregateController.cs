@@ -19,15 +19,15 @@ namespace DDDToolkit.API
 
         [HttpGet]
         [Route("{id}")]
-        public async Task<T> GetById(TId id)
+        public async Task<IActionResult> GetById(TId id)
         {
-            return await _applicationService.GetById(id);
+            return Ok(await _applicationService.GetById(id));
         }
 
         [HttpGet]
-        public async Task<IReadOnlyCollection<T>> GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            return await _applicationService.GetAll();
+            return Ok(await _applicationService.GetAll());
         }
     }
 }
