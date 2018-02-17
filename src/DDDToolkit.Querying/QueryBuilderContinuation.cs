@@ -16,6 +16,6 @@ namespace DDDToolkit.Querying
         public QueryBuilderExpression<T, TProp> Has<TProp>(Expression<Func<T, TProp>> expression)
             => new QueryBuilderExpression<T, TProp>(expression, _continueWith);
 
-        public Query<T> Has(Expression<Func<T, bool>> query) => new Query<T>(query);
+        public Query<T> Has(Expression<Func<T, bool>> query) => _continueWith(new Query<T>(query));
     }
 }
