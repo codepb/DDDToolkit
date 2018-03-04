@@ -1,6 +1,7 @@
 ﻿using DDDToolkit.Core.Interfaces;
 using DDDToolkit.Core.Repositories;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace DDDToolkit.Repository.Sql
@@ -21,6 +22,11 @@ namespace DDDToolkit.Repository.Sql
 
         public virtual Task Update(T entity)
         {
+            var trackedEntity = DbContext.ChangeTracker.Entries<T>().FirstOrDefault(e => e.Entity.Id.Equals(entity.Id));
+            if(trackedEntity != null)
+            {
+                trackedEntity.State = EntityState.Detached;
+            }
             Set.Update(entity);
             return Task.CompletedTask;
         }
