@@ -5,7 +5,7 @@ namespace DDDToolkit.Core
 {
     public abstract class Entity<T> : IEntity<T>
     {
-        public T Id { get; protected set; }
+        public T Id { get; set; }
 
         public override bool Equals(object obj)
         {
