@@ -6,7 +6,7 @@ namespace DDDToolkit.Samples.Library.Domain
     {
         public AuthorHasName(string firstName, string lastName)
         {
-            Setup(Has(a => a.FirstName)
+            Define(Has(a => a.FirstName)
                   .EqualTo(firstName)
                   .And
                   .Has(a => a.LastName)

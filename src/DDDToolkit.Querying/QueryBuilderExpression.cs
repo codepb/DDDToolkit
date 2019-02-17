@@ -70,11 +70,11 @@ namespace DDDToolkit.Querying
         public Query<T, TProp> LessThanOrEqualTo(TProp other)
             => CreateQuery(other, Expression.LessThanOrEqual);
 
-        public Query<T> Satisfying(IQuery<TProp> query)
+        public Query<T, TProp> Satisfying(IQuery<TProp> query)
             => Satisfying(query.AsExpression());
 
-        public Query<T> Satisfying(Expression<Func<TProp, bool>> query)
-            => query.WithParameter(_expression);
+        public Query<T, TProp> Satisfying(Expression<Func<TProp, bool>> query)
+            => new Query<T, TProp>(query.WithParameter(_expression), _expression);
 
         public Query<T, TProp> Null()
         {

@@ -40,11 +40,11 @@ namespace DDDToolkit.Querying
             
         }
 
-        protected void Setup(IQuery<T> query)
+        protected void Define(IQuery<T> query)
         {
             if(_expression != null)
             {
-                throw new InvalidOperationException("Query already setup.");
+                throw new InvalidOperationException("Query already defined.");
             }
             _expression = query.AsExpression();
         }
@@ -59,8 +59,8 @@ namespace DDDToolkit.Querying
             return new Query<T>(lambda);
         }
 
-        public IQuery<T> AndSatisfies(IQuery<T> query) => CreateNewQuery(query, Expression.AndAlso);
-        public IQuery<T> OrSatisfies(IQuery<T> query) => CreateNewQuery(query, Expression.OrElse);        
+        public IQuery<T> AndSatisfying(IQuery<T> query) => CreateNewQuery(query, Expression.AndAlso);
+        public IQuery<T> OrSatisfying(IQuery<T> query) => CreateNewQuery(query, Expression.OrElse);        
 
         public Expression<Func<T, bool>> AsExpression() => _expression;
     
