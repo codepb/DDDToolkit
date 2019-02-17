@@ -11,25 +11,25 @@ namespace DDDToolkit.Querying.Tests
         [Fact]
         public void CorrectlyHandleNesting()
         {
-            _b.And(_c.Or(_a)).IsSatisfiedBy("b").Should().BeFalse();
+            _b.AndSatisfies(_c.OrSatisfies(_a)).IsSatisfiedBy("b").Should().BeFalse();
         }
 
         [Fact]
         public void ReturnTrueWhenRightHandSideIsTrue()
         {
-            _b.And(_c).Or(_a).IsSatisfiedBy("a").Should().BeTrue();
+            _b.AndSatisfies(_c).OrSatisfies(_a).IsSatisfiedBy("a").Should().BeTrue();
         }
 
         [Fact]
         public void ReturnTrueWhenLeftHandSideIsTrue()
         {
-            _a.And(_a).Or(_b).IsSatisfiedBy("a").Should().BeTrue();
+            _a.AndSatisfies(_a).OrSatisfies(_b).IsSatisfiedBy("a").Should().BeTrue();
         }
 
         [Fact]
         public void ReturnFalseWhenBothSidesAreFalse()
         {
-            _b.And(_a).Or(_c).IsSatisfiedBy("a").Should().BeFalse();
+            _b.AndSatisfies(_a).OrSatisfies(_c).IsSatisfiedBy("a").Should().BeFalse();
         }
     }
 }

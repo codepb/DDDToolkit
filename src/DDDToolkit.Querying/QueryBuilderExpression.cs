@@ -9,35 +9,30 @@ namespace DDDToolkit.Querying
     public class QueryBuilderExpression<T, TProp>
     {
         private Expression<Func<T, TProp>> _expression;
-        private readonly Func<Query<T>, Query<T>> _continueWith;
+        protected readonly Func<Query<T>, Query<T, TProp>> _continueWith;
 
-        internal QueryBuilderExpression()
-        {
-
-        }
-
-        internal QueryBuilderExpression(Expression<Func<T, TProp>> expression, Func<Query<T>, Query<T>> continueWith = null)
+        internal QueryBuilderExpression(Expression<Func<T, TProp>> expression, Func<Query<T>, Query<T, TProp>> continueWith = null)
         {
             _expression = expression;
-            _continueWith = continueWith ?? (q => q);
+            _continueWith = continueWith ?? (q => new Query<T, TProp>(q, _expression));
         }
 
-        private Query<T> CreateQuery(TProp other, Func<Expression, Expression, BinaryExpression> expressionCreator)
+        private Query<T, TProp> CreateQuery(TProp other, Func<Expression, Expression, BinaryExpression> expressionCreator)
         {
             var otherEntity = Expression.Constant(other, typeof(TProp));
             var expression = expressionCreator(_expression.Body, otherEntity);
             var lambda = Expression.Lambda<Func<T, bool>>(expression, _expression.Parameters);
-            return _continueWith(new Query<T>(lambda));
+            return _continueWith(new Query<T, TProp>(lambda, _expression));
         }
 
-        public Query<T> EqualTo(TProp other)
+        public Query<T, TProp> EqualTo(TProp other)
             => CreateQuery(other, Expression.Equal);
 
 
-        public Query<T> NotEqualTo(TProp other)
+        public Query<T, TProp> NotEqualTo(TProp other)
             => CreateQuery(other, Expression.NotEqual);
 
-        public Query<T> EqualToAnyOf(IEnumerable<TProp> values)
+        public Query<T, TProp> EqualToAnyOf(IEnumerable<TProp> values)
         {
             var method = typeof(Enumerable).GetMethods().Where(m => m.Name == "Contains")
                 .Single(x => x.GetParameters().Length == 2).
@@ -48,7 +43,7 @@ namespace DDDToolkit.Querying
             return _continueWith(new Query<T>(lambda));
         }
 
-        public Query<T> NotEqualToAnyOf(IEnumerable<TProp> values)
+        public Query<T, TProp> NotEqualToAnyOf(IEnumerable<TProp> values)
         {
             var method = typeof(Enumerable).GetMethods().Where(m => m.Name == "Contains")
                 .Single(x => x.GetParameters().Length == 2).
@@ -60,19 +55,19 @@ namespace DDDToolkit.Querying
             return _continueWith(new Query<T>(lambda));
         }
 
-        public Query<T> EqualToAnyOf(params TProp[] values) =>
+        public Query<T, TProp> EqualToAnyOf(params TProp[] values) =>
             EqualToAnyOf((IEnumerable<TProp>)values);
  
-        public Query<T> GreaterThan(TProp other)
+        public Query<T, TProp> GreaterThan(TProp other)
             => CreateQuery(other, Expression.GreaterThan);
 
-        public Query<T> GreaterThanOrEqualTo(TProp other)
+        public Query<T, TProp> GreaterThanOrEqualTo(TProp other)
             => CreateQuery(other, Expression.GreaterThanOrEqual);
 
-        public Query<T> LessThan(TProp other)
+        public Query<T, TProp> LessThan(TProp other)
             => CreateQuery(other, Expression.LessThan);
 
-        public Query<T> LessThanOrEqualTo(TProp other)
+        public Query<T, TProp> LessThanOrEqualTo(TProp other)
             => CreateQuery(other, Expression.LessThanOrEqual);
 
         public Query<T> Satisfying(IQuery<TProp> query)
@@ -81,20 +76,20 @@ namespace DDDToolkit.Querying
         public Query<T> Satisfying(Expression<Func<TProp, bool>> query)
             => query.WithParameter(_expression);
 
-        public Query<T> Null()
+        public Query<T, TProp> Null()
         {
             var otherEntity = Expression.Constant(null, typeof(TProp));
             var expression = Expression.Equal(_expression.Body, otherEntity);
             var lambda = Expression.Lambda<Func<T, bool>>(expression, _expression.Parameters);
-            return new Query<T>(lambda);
+            return new Query<T, TProp>(lambda, _expression);
         }
 
-        public Query<T> NotNull()
+        public Query<T, TProp> NotNull()
         {
             var otherEntity = Expression.Constant(null, typeof(TProp));
             var expression = Expression.NotEqual(_expression.Body, otherEntity);
             var lambda = Expression.Lambda<Func<T, bool>>(expression, _expression.Parameters);
-            return new Query<T>(lambda);
+            return new Query<T, TProp>(lambda, _expression);
         }
     }
 }
