@@ -3,27 +3,6 @@ using System.Linq.Expressions;
 
 namespace DDDToolkit.Querying
 {
-    public class Query<T, TProp> : Query<T>
-    {
-        private readonly Expression<Func<T, TProp>> _prevExpression;
-
-        public Query(Expression<Func<T, bool>> expression, Expression<Func<T, TProp>> prevExpression = null) : base(expression)
-        {
-            _prevExpression = prevExpression;
-        }
-
-        public Query(IQuery<T> query, Expression<Func<T, TProp>> prevExpression = null) : base(query)
-        {
-            _prevExpression = prevExpression;
-        }
-
-        public QueryBuilderContinuation<T, TProp> And
-            => new QueryBuilderContinuation<T, TProp>((q2) => CreateNewQuery(q2, Expression.And), _prevExpression);
-
-        public QueryBuilderContinuation<T, TProp> Or
-            => new QueryBuilderContinuation<T, TProp>((q2) => CreateNewQuery(q2, Expression.Or), _prevExpression);
-    }
-
     public class Query<T> : IQuery<T> 
     {
         private Expression<Func<T, bool>> _expression;
@@ -39,6 +18,12 @@ namespace DDDToolkit.Querying
         {
             
         }
+
+        public QueryBuilderContinuation<T> And
+            => new QueryBuilderContinuation<T>((q2) => CreateNewQuery(q2, Expression.And));
+
+        public QueryBuilderContinuation<T> Or
+            => new QueryBuilderContinuation<T>((q2) => CreateNewQuery(q2, Expression.Or));
 
         protected void Define(IQuery<T> query)
         {
