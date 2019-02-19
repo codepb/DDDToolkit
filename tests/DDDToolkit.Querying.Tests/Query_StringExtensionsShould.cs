@@ -19,14 +19,14 @@ namespace DDDToolkit.Querying.Tests
         [Fact]
         public void StartsWithCorrectlyReturnsTrue()
         {
-            var query = Query<TestEntity>.Has(a => a.A).StartsWith("a").And.Has(a => a.B).StartsWith("de");
+            var query = Query<TestEntity>.Has(a => a.A).StartingWith("a").And.Has(a => a.B).StartingWith("de");
             
             _testEntity.Satisfies(query).Should().BeTrue();
         }
         [Fact]
         public void StartsWithCorrectlyReturnsFalse()
         {
-            var query = Query<TestEntity>.Has(a => a.A).StartsWith("a").And.Has(a => a.B).StartsWith("e");
+            var query = Query<TestEntity>.Has(a => a.A).StartingWith("a").And.Has(a => a.B).StartingWith("e");
 
             _testEntity.Satisfies(query).Should().BeFalse();
         }
@@ -34,7 +34,7 @@ namespace DDDToolkit.Querying.Tests
         [Fact]
         public void EndsWithCorrectlyReturnsTrue()
         {
-            var query = Query<TestEntity>.Has(a => a.A).EndsWith("c").And.Has(a => a.B).EndsWith("ef");
+            var query = Query<TestEntity>.Has(a => a.A).EndingWith("c").And.Has(a => a.B).EndingWith("ef");
 
             _testEntity.Satisfies(query).Should().BeTrue();
         }
@@ -42,7 +42,7 @@ namespace DDDToolkit.Querying.Tests
         [Fact]
         public void EndsWithCorrectlyReturnsFalse()
         {
-            var query = Query<TestEntity>.Has(a => a.A).EndsWith("ab").And.Has(a => a.B).EndsWith("ef");
+            var query = Query<TestEntity>.Has(a => a.A).EndingWith("ab").And.Has(a => a.B).EndingWith("ef");
 
             _testEntity.Satisfies(query).Should().BeFalse();
         }

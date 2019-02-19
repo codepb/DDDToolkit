@@ -74,14 +74,14 @@ namespace DDDToolkit.Querying
             => Satisfying(query.AsExpression());
 
         public Query<T> Satisfying(Expression<Func<TProp, bool>> query)
-            => new Query<T>(query.WithParameter(_expression));
+            => _continueWith(new Query<T>(query.WithParameter(_expression)));
 
         public Query<T> Null()
         {
             var otherEntity = Expression.Constant(null, typeof(TProp));
             var expression = Expression.Equal(_expression.Body, otherEntity);
             var lambda = Expression.Lambda<Func<T, bool>>(expression, _expression.Parameters);
-            return new Query<T>(lambda);
+            return _continueWith(new Query<T>(lambda));
         }
 
         public Query<T> NotNull()
@@ -89,7 +89,7 @@ namespace DDDToolkit.Querying
             var otherEntity = Expression.Constant(null, typeof(TProp));
             var expression = Expression.NotEqual(_expression.Body, otherEntity);
             var lambda = Expression.Lambda<Func<T, bool>>(expression, _expression.Parameters);
-            return new Query<T>(lambda);
+            return _continueWith(new Query<T>(lambda));
         }
     }
 }
