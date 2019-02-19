@@ -69,5 +69,23 @@ namespace DDDToolkit.Querying
             var lambda = Expression.Lambda<Func<T, bool>>(Expression.Not(expression), queryBuilderExpression._expression.Parameters);
             return queryBuilderExpression._continueWith(new Query<T>(lambda));
         }
+
+        public static Query<T> EqualToSequence<T, T1>(this QueryBuilderExpression<T, IEnumerable<T1>> queryBuilderExpression, IEnumerable<T1> other)
+        {
+            var otherEntity = Expression.Constant(other, typeof(IEnumerable<T1>));
+            var method = typeof(Enumerable).GetMethods().FirstOrDefault(m => m.Name == "SequenceEqual" && m.GetParameters().Length == 2)?.MakeGenericMethod(typeof(T1));
+            var expression = Expression.Call(method, queryBuilderExpression._expression.Body, otherEntity);
+            var lambda = Expression.Lambda<Func<T, bool>>(expression, queryBuilderExpression._expression.Parameters);
+            return queryBuilderExpression._continueWith(new Query<T>(lambda));
+        }
+
+        public static Query<T> NotEqualToSequence<T, T1>(this QueryBuilderExpression<T, IEnumerable<T1>> queryBuilderExpression, IEnumerable<T1> other)
+        {
+            var otherEntity = Expression.Constant(other, typeof(IEnumerable<T1>));
+            var method = typeof(Enumerable).GetMethods().FirstOrDefault(m => m.Name == "SequenceEqual" && m.GetParameters().Length == 2)?.MakeGenericMethod(typeof(T1));
+            var expression = Expression.Call(method, queryBuilderExpression._expression.Body, otherEntity);
+            var lambda = Expression.Lambda<Func<T, bool>>(Expression.Not(expression), queryBuilderExpression._expression.Parameters);
+            return queryBuilderExpression._continueWith(new Query<T>(lambda));
+        }
     }
 }

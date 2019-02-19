@@ -109,5 +109,33 @@ namespace DDDToolkit.Querying.Tests
             var query = Query<IEnumerable<int>>.Is.WithNotAll(i => i < 6 && i > 0);
             _testEnumerable.Satisfies(query).Should().BeFalse();
         }
+
+        [Fact]
+        public void EqualToSequenceShouldCorrectlyReturnTrue()
+        {
+            var query = Query<IEnumerable<int>>.Is.EqualToSequence(new[] { 1, 2, 3, 4, 5 });
+            _testEnumerable.Satisfies(query).Should().BeTrue();
+        }
+
+        [Fact]
+        public void EqualToSequenceShouldCorrectlyReturnFalse()
+        {
+            var query = Query<IEnumerable<int>>.Is.EqualToSequence(new[] { 1, 2, 4, 5 });
+            _testEnumerable.Satisfies(query).Should().BeFalse();
+        }
+
+        [Fact]
+        public void NotEqualToSequenceShouldCorrectlyReturnTrue()
+        {
+            var query = Query<IEnumerable<int>>.Is.NotEqualToSequence(new[] { 1, 2, 3, 4, 5, 6 });
+            _testEnumerable.Satisfies(query).Should().BeTrue();
+        }
+
+        [Fact]
+        public void NotEqualToSequenceShouldCorrectlyReturnFalse()
+        {
+            var query = Query<IEnumerable<int>>.Is.NotEqualToSequence(new[] { 1, 2, 3, 4, 5 });
+            _testEnumerable.Satisfies(query).Should().BeFalse();
+        }
     }
 }
