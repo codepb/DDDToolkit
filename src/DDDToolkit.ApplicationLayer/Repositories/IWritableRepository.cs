@@ -1,7 +1,7 @@
 ﻿using DDDToolkit.Core.Interfaces;
 using System.Threading.Tasks;
 
-namespace DDDToolkit.Core.Repositories
+namespace DDDToolkit.ApplicationLayer.Repositories
 {
     public interface IWritableRepository<T, TId>
         where T : IAggregateRoot<TId>

@@ -23,7 +23,7 @@ namespace DDDToolkit.Samples.Library.UI.Web.Controllers
         {
             var authorHasName = new AuthorHasName(firstName, lastName);
             var query = Query<Book>.Has(b => b.Author).Satisfying(authorHasName);
-            var result = await _applicationService.Query(query);
+            var result = await _applicationService.GetWhere(query);
             return result;
         }
     }

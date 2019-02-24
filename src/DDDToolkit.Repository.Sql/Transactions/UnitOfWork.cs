@@ -1,5 +1,5 @@
-﻿using DDDToolkit.ApplicationLayer.Transactions;
-using DDDToolkit.Core.Repositories;
+﻿using DDDToolkit.ApplicationLayer.Repositories;
+using DDDToolkit.ApplicationLayer.Transactions;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Threading.Tasks;

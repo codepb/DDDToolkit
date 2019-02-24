@@ -1,8 +1,7 @@
-﻿using DDDToolkit.Core;
+﻿using DDDToolkit.ApplicationLayer.Repositories;
+using DDDToolkit.Core;
 using DDDToolkit.Core.Interfaces;
-using DDDToolkit.Core.Repositories;
 using DDDToolkit.EntityFramework.Extensions;
-using DDDToolkit.Utilities.Extensions;
 using FluentQueries;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -25,8 +24,6 @@ namespace DDDToolkit.Repository.Sql
         protected virtual IQueryable<T> ApplyIncludes(IQueryable<T> query) => query.IncludeEverything();
         protected virtual IQueryable<T> Queryable => ApplyIncludes(Set.AsNoTracking());
 
-        public Task<IReadOnlyCollection<T>> GetAll(CancellationToken cancellationToken = default(CancellationToken)) => Set.AsNoTracking().ToListAsync(cancellationToken).ToReadOnlyCollection();
-
         public Task<T> GetById(TId id, CancellationToken cancellationToken = default(CancellationToken))
         {
             var eId = Expression.Constant(id, typeof(TId));
@@ -38,20 +35,58 @@ namespace DDDToolkit.Repository.Sql
             return Queryable.FirstOrDefaultAsync(eLambda, cancellationToken);
         }
 
-        private Task<IReadOnlyCollection<T>> ExecuteQueryOnQueryable(Expression<Func<T, bool>> query, IQueryable<T> queryable, CancellationToken cancellationToken)
-            => queryable.Where(query).ToReadOnlyCollectionAsync(cancellationToken);
+        private IQueryable<T> SetupPaging(PagingOptions pagingOptions, IQueryable<T> queryable)
+        {
+            return queryable.Skip((pagingOptions.Page - 1) * pagingOptions.AmountPerPage).Take(pagingOptions.AmountPerPage);
+        }
+
+        private Task<IReadOnlyCollection<T>> ExecuteQueryOnQueryable(Expression<Func<T, bool>> query, IQueryable<T> queryable, CancellationToken cancellationToken, PagingOptions pagingOptions = null)
+        {
+            var queryDefinition = queryable.Where(query);
+
+            if(pagingOptions != null)
+            {
+                queryDefinition = SetupPaging(pagingOptions, queryDefinition);
+            }
+            
+            return queryDefinition.ToReadOnlyCollectionAsync(cancellationToken);
+        }
+
+        public Task<IReadOnlyCollection<T>> Query(CancellationToken cancellationToken = default(CancellationToken))
+            => Set.AsNoTracking().ToReadOnlyCollectionAsync(cancellationToken);
+
+        public Task<IReadOnlyCollection<T>> Query(PagingOptions pagingOptions, CancellationToken cancellationToken = default(CancellationToken))
+            => SetupPaging(pagingOptions, Set.AsNoTracking()).ToReadOnlyCollectionAsync(cancellationToken);
 
         public Task<IReadOnlyCollection<T>> Query(Expression<Func<T, bool>> query, CancellationToken cancellationToken = default(CancellationToken))
             => ExecuteQueryOnQueryable(query, Set.AsNoTracking(), cancellationToken);
 
+        public Task<IReadOnlyCollection<T>> Query(Expression<Func<T, bool>> query, PagingOptions pagingOptions, CancellationToken cancellationToken = default(CancellationToken))
+            => ExecuteQueryOnQueryable(query, Set.AsNoTracking(), cancellationToken, pagingOptions);
+
         public Task<IReadOnlyCollection<T>> Query(IQuery<T> query, CancellationToken cancellationToken = default(CancellationToken))
             => Query(query.AsExpression(), cancellationToken);
+
+        public Task<IReadOnlyCollection<T>> Query(IQuery<T> query, PagingOptions pagingOptions, CancellationToken cancellationToken = default(CancellationToken))
+            => Query(query.AsExpression(), pagingOptions, cancellationToken);
+
+        public Task<IReadOnlyCollection<T>> QueryWithChildren(CancellationToken cancellationToken = default(CancellationToken))
+            => Queryable.ToReadOnlyCollectionAsync(cancellationToken);
+
+        public Task<IReadOnlyCollection<T>> QueryWithChildren(PagingOptions pagingOptions, CancellationToken cancellationToken = default(CancellationToken))
+            => SetupPaging(pagingOptions, Queryable).ToReadOnlyCollectionAsync(cancellationToken);
 
         public Task<IReadOnlyCollection<T>> QueryWithChildren(Expression<Func<T, bool>> query, CancellationToken cancellationToken = default(CancellationToken))
             => ExecuteQueryOnQueryable(query, Queryable, cancellationToken);
 
+        public Task<IReadOnlyCollection<T>> QueryWithChildren(Expression<Func<T, bool>> query, PagingOptions pagingOptions, CancellationToken cancellationToken = default(CancellationToken))
+            => ExecuteQueryOnQueryable(query, Queryable, cancellationToken, pagingOptions);
+
         public Task<IReadOnlyCollection<T>> QueryWithChildren(IQuery<T> query, CancellationToken cancellationToken = default(CancellationToken))
             => QueryWithChildren(query.AsExpression(), cancellationToken);
+
+        public Task<IReadOnlyCollection<T>> QueryWithChildren(IQuery<T> query, PagingOptions pagingOptions, CancellationToken cancellationToken = default(CancellationToken))
+            => QueryWithChildren(query.AsExpression(), pagingOptions, cancellationToken);
 
         public Task<T> FirstOrDefault(Expression<Func<T, bool>> query, CancellationToken cancellationToken = default(CancellationToken))
             => Queryable.FirstOrDefaultAsync(query, cancellationToken);
