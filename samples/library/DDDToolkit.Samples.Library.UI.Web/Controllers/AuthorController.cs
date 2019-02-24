@@ -1,10 +1,8 @@
 ﻿using DDDToolkit.ApplicationLayer;
-using DDDToolkit.Querying;
 using DDDToolkit.Samples.Library.Domain;
+using FluentQueries;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace DDDToolkit.Samples.Library.UI.Web.Controllers

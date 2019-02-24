@@ -1,7 +1,4 @@
-﻿using DDDToolkit.Querying;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using FluentQueries;
 
 namespace DDDToolkit.Validation
 {

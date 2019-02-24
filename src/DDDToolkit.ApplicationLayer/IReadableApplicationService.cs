@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using DDDToolkit.Core.Interfaces;
-using DDDToolkit.Querying;
+using FluentQueries;
 
 namespace DDDToolkit.ApplicationLayer
 {

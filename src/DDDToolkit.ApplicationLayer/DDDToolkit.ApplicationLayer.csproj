@@ -15,6 +15,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentQueries" Version="1.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\DDDToolkit.Core\DDDToolkit.Core.csproj" />
   </ItemGroup>
 

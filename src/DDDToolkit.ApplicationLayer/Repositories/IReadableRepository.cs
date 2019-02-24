@@ -1,5 +1,5 @@
 ﻿using DDDToolkit.Core.Interfaces;
-using DDDToolkit.Querying;
+using FluentQueries;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;

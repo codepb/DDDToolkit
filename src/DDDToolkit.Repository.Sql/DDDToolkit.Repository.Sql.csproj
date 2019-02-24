@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentQueries" Version="1.1.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.2" />
   </ItemGroup>
 
@@ -27,7 +28,6 @@
     <ProjectReference Include="..\DDDToolkit.ApplicationLayer\DDDToolkit.ApplicationLayer.csproj" />
     <ProjectReference Include="..\DDDToolkit.Core\DDDToolkit.Core.csproj" />
     <ProjectReference Include="..\DDDToolkit.EntityFramework.Extensions\DDDToolkit.EntityFramework.Extensions.csproj" />
-    <ProjectReference Include="..\DDDToolkit.Querying\DDDToolkit.Querying.csproj" />
     <ProjectReference Include="..\DDDToolkit.Utilities\DDDToolkit.Utilities.csproj" />
   </ItemGroup>
 

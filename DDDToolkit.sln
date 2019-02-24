@@ -35,11 +35,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDDToolkit.Samples.Library.
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "DDDToolkit.Samples.Library.Repository.Database", "samples\library\DDDToolkit.Samples.Library.Repository.Database\DDDToolkit.Samples.Library.Repository.Database.sqlproj", "{1D41D8D2-B6A5-47DD-8E98-9512EC48B429}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDDToolkit.Querying", "src\DDDToolkit.Querying\DDDToolkit.Querying.csproj", "{AAAF943F-C3DE-4BD5-BC2D-850E77A9B607}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDDToolkit.Querying.Tests", "tests\DDDToolkit.Querying.Tests\DDDToolkit.Querying.Tests.csproj", "{4D18A7F4-169C-4399-BFF3-F2F8AE665C55}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDDToolkit.Validation", "src\DDDToolkit.Validation\DDDToolkit.Validation.csproj", "{0D0A57EF-3B95-4D6B-A3E6-0217FEB0DC6F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDDToolkit.Validation", "src\DDDToolkit.Validation\DDDToolkit.Validation.csproj", "{0D0A57EF-3B95-4D6B-A3E6-0217FEB0DC6F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -97,14 +93,6 @@ Global
 		{1D41D8D2-B6A5-47DD-8E98-9512EC48B429}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1D41D8D2-B6A5-47DD-8E98-9512EC48B429}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1D41D8D2-B6A5-47DD-8E98-9512EC48B429}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{AAAF943F-C3DE-4BD5-BC2D-850E77A9B607}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AAAF943F-C3DE-4BD5-BC2D-850E77A9B607}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AAAF943F-C3DE-4BD5-BC2D-850E77A9B607}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AAAF943F-C3DE-4BD5-BC2D-850E77A9B607}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4D18A7F4-169C-4399-BFF3-F2F8AE665C55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4D18A7F4-169C-4399-BFF3-F2F8AE665C55}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4D18A7F4-169C-4399-BFF3-F2F8AE665C55}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4D18A7F4-169C-4399-BFF3-F2F8AE665C55}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0D0A57EF-3B95-4D6B-A3E6-0217FEB0DC6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0D0A57EF-3B95-4D6B-A3E6-0217FEB0DC6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0D0A57EF-3B95-4D6B-A3E6-0217FEB0DC6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -127,8 +115,6 @@ Global
 		{95D67484-5CDD-4CA2-8457-B4A5D42D4D3C} = {BDD881C3-118B-42D6-9D77-DDAB213CA4B0}
 		{6DD4F5BC-B48B-43A6-A048-28F8BD04D7F6} = {BDD881C3-118B-42D6-9D77-DDAB213CA4B0}
 		{1D41D8D2-B6A5-47DD-8E98-9512EC48B429} = {BDD881C3-118B-42D6-9D77-DDAB213CA4B0}
-		{AAAF943F-C3DE-4BD5-BC2D-850E77A9B607} = {EF054C6D-056E-417A-A40A-376A20DF90A6}
-		{4D18A7F4-169C-4399-BFF3-F2F8AE665C55} = {57967491-B4BB-44B9-B270-6533A1E388B0}
 		{0D0A57EF-3B95-4D6B-A3E6-0217FEB0DC6F} = {EF054C6D-056E-417A-A40A-376A20DF90A6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution

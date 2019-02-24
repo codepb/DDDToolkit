@@ -1,4 +1,4 @@
-﻿using DDDToolkit.Querying;
+﻿using FluentQueries;
 
 namespace DDDToolkit.Samples.Library.Domain
 {

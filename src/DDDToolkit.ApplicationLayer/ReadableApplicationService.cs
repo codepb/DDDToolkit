@@ -1,6 +1,6 @@
 ﻿using DDDToolkit.ApplicationLayer.Transactions;
 using DDDToolkit.Core.Interfaces;
-using DDDToolkit.Querying;
+using FluentQueries;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

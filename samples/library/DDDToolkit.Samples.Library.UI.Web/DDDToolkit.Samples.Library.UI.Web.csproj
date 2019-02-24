@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentQueries" Version="1.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.All" />
   </ItemGroup>
 

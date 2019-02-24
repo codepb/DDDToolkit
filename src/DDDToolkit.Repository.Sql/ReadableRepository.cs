@@ -2,8 +2,8 @@
 using DDDToolkit.Core.Interfaces;
 using DDDToolkit.Core.Repositories;
 using DDDToolkit.EntityFramework.Extensions;
-using DDDToolkit.Querying;
 using DDDToolkit.Utilities.Extensions;
+using FluentQueries;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
