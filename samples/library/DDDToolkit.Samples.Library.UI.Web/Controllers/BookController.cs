@@ -19,10 +19,10 @@ namespace DDDToolkit.Samples.Library.UI.Web.Controllers
         public async override Task<IActionResult> Create([FromBody] Book aggregate)
         {
             var validator = new BookValidator();
-            var brokenRules = validator.Validate(aggregate);
+            var brokenRules = validator.GetBrokenRules(aggregate);
             if(brokenRules.Any())
             {
-                return BadRequest();
+                return BadRequest(brokenRules.Select(b => b.Rule));
             }
             return await base.Create(aggregate);
         }

@@ -31,16 +31,12 @@ namespace DDDToolkit.Validation
             => _rules.Values.SelectMany(r => r).All(r => TestRule(r, subject));
 
 
-        public bool IsValidProperty<TProp>(T subject, Func<T, TProp> propertyAccessor)
+        public bool PropertyIsValid<TProp>(T subject, Func<T, TProp> propertyAccessor)
         {
-            if(!_rules.ContainsKey(propertyAccessor))
-            {
-                return true;
-            }
-            return _rules[propertyAccessor].All(r => TestRule(r, subject));
+            return !_rules.ContainsKey(propertyAccessor) || _rules[propertyAccessor].All(r => TestRule(r, subject));
         }
 
-        public IEnumerable<IBrokenRule<T, object>> Validate(T subject)
+        public IEnumerable<IBrokenRule<T, object>> GetBrokenRules(T subject)
         {
             var brokenRules = new List<IBrokenRule<T, object>>();
             foreach(var key in _rules.Keys)
@@ -50,7 +46,7 @@ namespace DDDToolkit.Validation
             return brokenRules;
         }
 
-        public IEnumerable<IBrokenRule<T, TProp>> ValidateProperty<TProp>(T subject, Func<T, TProp> propertyAccessor)
+        public IEnumerable<IBrokenRule<T, TProp>> GetBrokenRulesForProperty<TProp>(T subject, Func<T, TProp> propertyAccessor)
         {
             if (!_rules.ContainsKey(propertyAccessor))
             {
