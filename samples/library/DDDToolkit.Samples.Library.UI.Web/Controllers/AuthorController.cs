@@ -1,4 +1,5 @@
 ﻿using DDDToolkit.ApplicationLayer;
+using DDDToolkit.Samples.Library.Application;
 using DDDToolkit.Samples.Library.Domain;
 using FluentQueries;
 using Microsoft.AspNetCore.Mvc;
@@ -11,9 +12,9 @@ namespace DDDToolkit.Samples.Library.UI.Web.Controllers
     [Produces("application/json")]
     public class AuthorController : Controller
     {
-        private readonly IApplicationService<Book, int> _applicationService;
+        private readonly BookService _applicationService;
 
-        public AuthorController(IApplicationService<Book, int> applicationService)
+        public AuthorController(BookService applicationService)
         {
             _applicationService = applicationService;
         }
@@ -21,9 +22,7 @@ namespace DDDToolkit.Samples.Library.UI.Web.Controllers
         [Route("{firstName} {lastName}/Books")]
         public async Task<IReadOnlyCollection<Book>> GetBooksByAuthor(string firstName, string lastName)
         {
-            var authorHasName = new AuthorHasName(firstName, lastName);
-            var query = Query<Book>.Has(b => b.Author).Satisfying(authorHasName);
-            var result = await _applicationService.GetWhere(query);
+            var result = await _applicationService.GetBooksByAuthor(firstName, lastName);
             return result;
         }
     }
