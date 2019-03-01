@@ -1,11 +1,10 @@
 ﻿using DDDToolkit.ApplicationLayer;
 using DDDToolkit.Samples.Library.Domain;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using DDDToolkit.ApplicationLayer.Transactions;
 using FluentQueries;
 using System.Threading.Tasks;
+using DDDToolkit.ApplicationLayer.Repositories;
 
 namespace DDDToolkit.Samples.Library.Application
 {
@@ -19,7 +18,7 @@ namespace DDDToolkit.Samples.Library.Application
         {
             var authorHasName = new AuthorHasName(firstName, lastName);
             var query = Query<Book>.Has(b => b.Author).Satisfying(authorHasName);
-            return _repository.QueryWithChildren(query);
+            return _repository.Query(query);
         }
 
         public Task<Book> GetById(int id)
@@ -29,7 +28,7 @@ namespace DDDToolkit.Samples.Library.Application
 
         public Task<IReadOnlyCollection<Book>> GetAll()
         {
-            return _repository.QueryWithChildren();
+            return _repository.Query();
         }
 
         public async Task Add(Book book)

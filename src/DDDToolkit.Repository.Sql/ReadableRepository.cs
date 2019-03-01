@@ -24,19 +24,12 @@ namespace DDDToolkit.Repository.Sql
         protected virtual IQueryable<T> ApplyIncludes(IQueryable<T> query) => query.IncludeEverything();
         protected virtual IQueryable<T> Queryable => ApplyIncludes(Set.AsNoTracking());
 
-        public Task<T> GetById(TId id, CancellationToken cancellationToken = default(CancellationToken))
-        {
-            var eId = Expression.Constant(id, typeof(TId));
-            var eEntity = Expression.Parameter(typeof(T), "e");
-            var eEntityId = Expression.Property(eEntity, nameof(Entity<TId>.Id));
-            var eEquals = Expression.Equal(eEntityId, eId);
-            var eLambda = Expression.Lambda<Func<T, bool>>(eEquals, eEntity);
-
-            return Queryable.FirstOrDefaultAsync(eLambda, cancellationToken);
-        }
-
         private IQueryable<T> SetupPaging(PagingOptions pagingOptions, IQueryable<T> queryable)
         {
+            if(pagingOptions == null)
+            {
+                return queryable;
+            }
             return queryable.Skip((pagingOptions.Page - 1) * pagingOptions.AmountPerPage).Take(pagingOptions.AmountPerPage);
         }
 
@@ -51,47 +44,62 @@ namespace DDDToolkit.Repository.Sql
             
             return queryDefinition.ToReadOnlyCollectionAsync(cancellationToken);
         }
+        private static IQueryable<T> SetupIncludes(string[] pathsToInclude, IQueryable<T> query)
+        {
+            if (pathsToInclude != null)
+            {
+                foreach (var path in pathsToInclude)
+                {
+                    query = query.Include(path);
+                }
+            }
 
-        public Task<IReadOnlyCollection<T>> Query(CancellationToken cancellationToken = default(CancellationToken))
-            => Set.AsNoTracking().ToReadOnlyCollectionAsync(cancellationToken);
+            return query;
+        }
 
-        public Task<IReadOnlyCollection<T>> Query(PagingOptions pagingOptions, CancellationToken cancellationToken = default(CancellationToken))
-            => SetupPaging(pagingOptions, Set.AsNoTracking()).ToReadOnlyCollectionAsync(cancellationToken);
+        private IQueryable<T> SetupQueryable(string[] onlyIncludePaths)
+        {
+            return onlyIncludePaths == null ? Queryable : SetupIncludes(onlyIncludePaths, Set.AsNoTracking());
+        }
 
-        public Task<IReadOnlyCollection<T>> Query(Expression<Func<T, bool>> query, CancellationToken cancellationToken = default(CancellationToken))
-            => ExecuteQueryOnQueryable(query, Set.AsNoTracking(), cancellationToken);
+        public Task<T> GetById(TId id, string[] onlyIncludePaths, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var eId = Expression.Constant(id, typeof(TId));
+            var eEntity = Expression.Parameter(typeof(T), "e");
+            var eEntityId = Expression.Property(eEntity, nameof(Entity<TId>.Id));
+            var eEquals = Expression.Equal(eEntityId, eId);
+            var eLambda = Expression.Lambda<Func<T, bool>>(eEquals, eEntity);
 
-        public Task<IReadOnlyCollection<T>> Query(Expression<Func<T, bool>> query, PagingOptions pagingOptions, CancellationToken cancellationToken = default(CancellationToken))
-            => ExecuteQueryOnQueryable(query, Set.AsNoTracking(), cancellationToken, pagingOptions);
+            var queryable = SetupQueryable(onlyIncludePaths);
+            return queryable.FirstOrDefaultAsync(eLambda, cancellationToken);
+        }
 
-        public Task<IReadOnlyCollection<T>> Query(IQuery<T> query, CancellationToken cancellationToken = default(CancellationToken))
-            => Query(query.AsExpression(), cancellationToken);
+        public Task<IReadOnlyCollection<T>> Query(QueryOptions options = null, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var queryable = SetupQueryable(options?.OnlyIncludePaths);
+            return SetupPaging(options?.PagingOptions, queryable).ToReadOnlyCollectionAsync(cancellationToken);
+        }
 
-        public Task<IReadOnlyCollection<T>> Query(IQuery<T> query, PagingOptions pagingOptions, CancellationToken cancellationToken = default(CancellationToken))
-            => Query(query.AsExpression(), pagingOptions, cancellationToken);
+        public Task<IReadOnlyCollection<T>> Query(Expression<Func<T, bool>> query, QueryOptions options = null, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var queryable = SetupQueryable(options?.OnlyIncludePaths);
+            return ExecuteQueryOnQueryable(query, queryable, cancellationToken, options?.PagingOptions);
+        }
 
-        public Task<IReadOnlyCollection<T>> QueryWithChildren(CancellationToken cancellationToken = default(CancellationToken))
-            => Queryable.ToReadOnlyCollectionAsync(cancellationToken);
+        public Task<IReadOnlyCollection<T>> Query(IQuery<T> query, QueryOptions options = null, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            return Query(query.AsExpression(), options, cancellationToken);
+        }
 
-        public Task<IReadOnlyCollection<T>> QueryWithChildren(PagingOptions pagingOptions, CancellationToken cancellationToken = default(CancellationToken))
-            => SetupPaging(pagingOptions, Queryable).ToReadOnlyCollectionAsync(cancellationToken);
+        public Task<T> FirstOrDefault(Expression<Func<T, bool>> query, string[] onlyIncludePaths = null, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var queryable = SetupQueryable(onlyIncludePaths);
+            return queryable.FirstOrDefaultAsync(query, cancellationToken);
+        }
 
-        public Task<IReadOnlyCollection<T>> QueryWithChildren(Expression<Func<T, bool>> query, CancellationToken cancellationToken = default(CancellationToken))
-            => ExecuteQueryOnQueryable(query, Queryable, cancellationToken);
-
-        public Task<IReadOnlyCollection<T>> QueryWithChildren(Expression<Func<T, bool>> query, PagingOptions pagingOptions, CancellationToken cancellationToken = default(CancellationToken))
-            => ExecuteQueryOnQueryable(query, Queryable, cancellationToken, pagingOptions);
-
-        public Task<IReadOnlyCollection<T>> QueryWithChildren(IQuery<T> query, CancellationToken cancellationToken = default(CancellationToken))
-            => QueryWithChildren(query.AsExpression(), cancellationToken);
-
-        public Task<IReadOnlyCollection<T>> QueryWithChildren(IQuery<T> query, PagingOptions pagingOptions, CancellationToken cancellationToken = default(CancellationToken))
-            => QueryWithChildren(query.AsExpression(), pagingOptions, cancellationToken);
-
-        public Task<T> FirstOrDefault(Expression<Func<T, bool>> query, CancellationToken cancellationToken = default(CancellationToken))
-            => Queryable.FirstOrDefaultAsync(query, cancellationToken);
-
-        public Task<T> FirstOrDefault(IQuery<T> query, CancellationToken cancellationToken = default(CancellationToken))
-            => FirstOrDefault(query.AsExpression(), cancellationToken);
+        public Task<T> FirstOrDefault(IQuery<T> query, string[] onlyIncludePaths = null, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            return FirstOrDefault(query.AsExpression(), onlyIncludePaths, cancellationToken);
+        }
     }
 }

@@ -1,6 +1,4 @@
-﻿using DDDToolkit.Core.Interfaces;
-
-namespace DDDToolkit.Core.Events
+﻿namespace DDDToolkit.Core.Events
 {
     public class DomainEvent : IDomainEvent
     {

@@ -1,6 +1,7 @@
 ﻿using DDDToolkit.Core;
 using DDDToolkit.Core.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
 using System;
 using System.Collections.Generic;
 using System.Linq;

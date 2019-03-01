@@ -2,6 +2,5 @@
 {
     public interface IAggregateRoot<T> : IEntity<T>
     {
-        void SetId(T id);
     }
 }
