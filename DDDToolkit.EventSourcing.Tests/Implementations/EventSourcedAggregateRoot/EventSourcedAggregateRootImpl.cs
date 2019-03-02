@@ -1,6 +1,6 @@
-﻿using DDDToolkit.Core.Events;
+﻿using DDDToolkit.EventSourcing.Events;
 
-namespace DDDToolkit.Core.Tests
+namespace DDDToolkit.EventSourcing.Tests
 {
     class EventSourcedAggregateRootImpl<T> : EventSourcedAggregateRoot<T>
     {

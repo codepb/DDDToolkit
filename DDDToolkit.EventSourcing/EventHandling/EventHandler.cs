@@ -1,11 +1,10 @@
-﻿using DDDToolkit.Core.Events;
-using DDDToolkit.Core.Interfaces;
+﻿using DDDToolkit.EventSourcing.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace DDDToolkit.Core.EventHandling
+namespace DDDToolkit.EventSourcing.EventHandling
 {
     class EventHandler : IEventHandler
     {

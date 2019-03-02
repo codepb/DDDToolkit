@@ -1,27 +1,26 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard1.3</TargetFramework>
     <Authors>Paul Burgess</Authors>
-    <Company>Paul Burgess</Company>
     <Product>DDDToolkit</Product>
-    <Description>Extensions to support working with DDDToolkit with Entity Framework Core.</Description>
+    <Description>Support for event sourcing using DDD</Description>
     <Copyright>Paul Burgess</Copyright>
     <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/codepb/DDDToolkit</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/codepb/DDDToolkit</RepositoryUrl>
-    <PackageTags>DDD, Domain Driven Design, Entity Framework Core</PackageTags>
     <PackageIconUrl>https://raw.githubusercontent.com/codepb/DDDToolkit/master/logo/logo.png</PackageIconUrl>
+    <RepositoryUrl>https://github.com/codepb/DDDToolkit</RepositoryUrl>
+    <PackageTags>DDD, Domain Driven Design, Event Sourcing, Domain Event</PackageTags>
     <Version>2.0.0</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.2" />
+    <PackageReference Include="FluentAssertions" Version="5.6.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DDDToolkit.Core\DDDToolkit.Core.csproj" />
-    <ProjectReference Include="..\DDDToolkit.Utilities\DDDToolkit.Utilities.csproj" />
+    <ProjectReference Include="..\src\DDDToolkit.Core\DDDToolkit.Core.csproj" />
   </ItemGroup>
+
 </Project>

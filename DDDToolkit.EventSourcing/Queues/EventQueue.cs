@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace DDDToolkit.Core.Queues
+namespace DDDToolkit.EventSourcing.Queues
 {
     internal class EventQueue<T> : IEventQueue<T>
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DDDToolkit.Core.Tests
+namespace DDDToolkit.EventSourcing.Tests
 {
     class NestedEventInterface : INestedEventInterface
     {

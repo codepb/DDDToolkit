@@ -1,9 +1,9 @@
-﻿using DDDToolkit.Core.EventHandling;
-using DDDToolkit.Core.Interfaces;
-using DDDToolkit.Core.Queues;
+﻿using DDDToolkit.EventSourcing.EventHandling;
+using DDDToolkit.EventSourcing.Queues;
 using System.Collections.Generic;
+using DDDToolkit.Core;
 
-namespace DDDToolkit.Core.Events
+namespace DDDToolkit.EventSourcing.Events
 {
     public class EventSourcedAggregateRoot<T> : AggregateRoot<T>, IEventSourcedAggregateRoot<T>
     {

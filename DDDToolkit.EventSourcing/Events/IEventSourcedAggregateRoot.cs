@@ -1,7 +1,7 @@
 ﻿using DDDToolkit.Core.Interfaces;
 using System.Collections.Generic;
 
-namespace DDDToolkit.Core.Events
+namespace DDDToolkit.EventSourcing.Events
 {
     public interface IEventSourcedAggregateRoot<T> : IAggregateRoot<T>
     {

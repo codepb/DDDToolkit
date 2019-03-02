@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
 using Xunit;
 
-namespace DDDToolkit.Core.Tests
+namespace DDDToolkit.EventSourcing.Tests
 {
     public class EventSourcedAggregateRoot_ApplyShould
     {

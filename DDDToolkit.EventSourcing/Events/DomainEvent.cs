@@ -1,4 +1,4 @@
-﻿namespace DDDToolkit.Core.Events
+﻿namespace DDDToolkit.EventSourcing.Events
 {
     public class DomainEvent : IDomainEvent
     {
