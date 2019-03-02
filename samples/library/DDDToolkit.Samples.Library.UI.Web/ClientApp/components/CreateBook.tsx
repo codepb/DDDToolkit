@@ -3,10 +3,6 @@ import { RouteComponentProps } from 'react-router';
 import 'isomorphic-fetch';
 import BookForm from './BookForm';
 
-interface CreateBookProps {
-
-}
-
 interface CreateBookState {
     title: string,
     firstName: string,
@@ -15,7 +11,7 @@ interface CreateBookState {
     [key: string]: string
 }
 
-class CreateBook extends React.Component<RouteComponentProps<CreateBookProps>, CreateBookState> {
+class CreateBook extends React.Component<RouteComponentProps<{}> | undefined, CreateBookState> {
     state = {
         title: '',
         firstName: '',

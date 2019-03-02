@@ -7,7 +7,7 @@ interface FetchDataExampleState {
     loading: boolean;
 }
 
-export class FetchData extends React.Component<RouteComponentProps<{}>, FetchDataExampleState> {
+export class FetchData extends React.Component<RouteComponentProps<any> | undefined, FetchDataExampleState> {
     state = { books: [], loading: true };
 
     componentDidMount() {
