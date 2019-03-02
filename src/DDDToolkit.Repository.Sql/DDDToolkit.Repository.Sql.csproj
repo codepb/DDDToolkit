@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -7,7 +7,7 @@
     <Product>DDDToolkit</Product>
     <Description>Repository and Unit of Work classes to work with DDDToolkit and SQL database using Entity Framework Core</Description>
     <Copyright>Paul Burgess</Copyright>
-    <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/codepb/DDDToolkit</PackageProjectUrl>
     <RepositoryUrl>https://github.com/codepb/DDDToolkit</RepositoryUrl>
     <PackageTags>DDD, Domain Driven Design, Entity Framework Core, SQL</PackageTags>
@@ -17,8 +17,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="EFQuery.cs" />
-    <Compile Remove="Query.cs" />
+    <None Include="..\..\LICENSE" Pack="true" PackagePath=""/>
   </ItemGroup>
 
   <ItemGroup>
