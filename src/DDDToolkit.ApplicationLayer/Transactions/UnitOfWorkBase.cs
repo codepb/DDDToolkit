@@ -10,7 +10,11 @@ namespace DDDToolkit.ApplicationLayer.Transactions
     {
         protected IObjectResolver _objectResolver = new ObjectResolver();
 
-        public T Repository<T>() where T : class, IRepository => _objectResolver.Resolve<T>();
+        protected IRepositoryRegisterer<T, TId> For<T, TId>() where T : IAggregateRoot<TId>
+        {
+            return new RepositoryRegisterer<T, TId>(_objectResolver);
+        }
+
         public abstract IRepository<T, TId> Repository<T, TId>() where T : class, IAggregateRoot<TId>;
         public abstract IReadableRepository<T, TId> ReadableRepository<T, TId>() where T : class, IAggregateRoot<TId>;
         public abstract IWritableRepository<T, TId> WritableRepository<T, TId>() where T : class, IAggregateRoot<TId>;
