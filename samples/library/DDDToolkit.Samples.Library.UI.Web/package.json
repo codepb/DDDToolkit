@@ -1,5 +1,5 @@
 {
-  "name": "DDDToolkit_Samples_Library_UI_Web",
+  "name": "ddd-toolkit-samples",
   "private": true,
   "version": "0.0.0",
   "devDependencies": {

@@ -8,10 +8,9 @@ interface FetchDataExampleState {
 }
 
 export class FetchData extends React.Component<RouteComponentProps<{}>, FetchDataExampleState> {
-    constructor() {
-        super();
-        this.state = { books: [], loading: true };
+    state = { books: [], loading: true };
 
+    componentDidMount() {
         fetch('api/Book')
             .then(response => response.json() as Promise<Book[]>)
             .then(data => {
