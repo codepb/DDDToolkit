@@ -3,14 +3,6 @@ import { RouteComponentProps } from 'react-router';
 import 'isomorphic-fetch';
 import BookForm from './BookForm';
 
-declare module 'react' {
-    class Fragment extends React.Component { }
-}
-
-interface CreateBookProps {
-
-}
-
 interface CreateBookState {
     title: string,
     firstName: string,
@@ -19,16 +11,13 @@ interface CreateBookState {
     [key: string]: string
 }
 
-class CreateBook extends React.Component<RouteComponentProps<CreateBookProps>, CreateBookState> {
-    constructor() {
-        super();
-        this.state = {
-            title: '',
-            firstName: '',
-            lastName: '',
-            isbn: ''
-        }
-    }
+class CreateBook extends React.Component<RouteComponentProps<{}> | undefined, CreateBookState> {
+    state = {
+        title: '',
+        firstName: '',
+        lastName: '',
+        isbn: ''
+    };
 
     private handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();

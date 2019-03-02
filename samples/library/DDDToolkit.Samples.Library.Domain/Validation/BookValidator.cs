@@ -1,7 +1,6 @@
 ﻿using DDDToolkit.Validation;
-using DDDToolkit.Querying;
 using DDDToolkit.Samples.Library.Domain.Validation;
-using System;
+using FluentQueries;
 
 namespace DDDToolkit.Samples.Library.Domain
 {
@@ -16,7 +15,7 @@ namespace DDDToolkit.Samples.Library.Domain
                 .HasRule<AuthorHasFirstName>()
                 .HasRule<AuthorHasLastName>();
             Property(b => b.Title)
-                .HasRule(Query<string>.Is.Satisfying(s => !string.IsNullOrEmpty(s)), "Title is required");
+                .HasRule(Query<string>.Is.NotNullOrEmpty(), "Title is required");
         }
     }
 }

@@ -1,16 +1,16 @@
-﻿using DDDToolkit.Querying;
+﻿using FluentQueries;
 
 namespace DDDToolkit.Samples.Library.Domain
 {
     public class AuthorHasName : Query<Author>
     {
         public AuthorHasName(string firstName, string lastName)
-            : base(
-                  Has(a => a.FirstName)
+        {
+            Define(Has(a => a.FirstName)
                   .EqualTo(firstName)
-                  .And()
+                  .And
                   .Has(a => a.LastName)
-                  .EqualTo(lastName)
-                  ) { }
+                  .EqualTo(lastName));
+        }
     }
 }
