@@ -84,9 +84,9 @@ namespace DDDToolkit.Core
 
         public static bool operator ==(ValueObject x, ValueObject y)
         {
-            if((object)x == null)
+            if(x is null)
             {
-                return (object)y == null;
+                return y is null;
             }
 
             return x.Equals(y);

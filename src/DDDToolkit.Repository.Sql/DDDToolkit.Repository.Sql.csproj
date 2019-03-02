@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -7,27 +7,28 @@
     <Product>DDDToolkit</Product>
     <Description>Repository and Unit of Work classes to work with DDDToolkit and SQL database using Entity Framework Core</Description>
     <Copyright>Paul Burgess</Copyright>
-    <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/codepb/DDDToolkit</PackageProjectUrl>
     <RepositoryUrl>https://github.com/codepb/DDDToolkit</RepositoryUrl>
     <PackageTags>DDD, Domain Driven Design, Entity Framework Core, SQL</PackageTags>
     <PackageIconUrl>https://raw.githubusercontent.com/codepb/DDDToolkit/master/logo/logo.png</PackageIconUrl>
+    <Version>2.0.0</Version>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="EFQuery.cs" />
-    <Compile Remove="Query.cs" />
+    <None Include="..\..\LICENSE" Pack="true" PackagePath=""/>
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.0.1" />
+    <PackageReference Include="FluentQueries" Version="1.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.2" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\DDDToolkit.ApplicationLayer\DDDToolkit.ApplicationLayer.csproj" />
     <ProjectReference Include="..\DDDToolkit.Core\DDDToolkit.Core.csproj" />
     <ProjectReference Include="..\DDDToolkit.EntityFramework.Extensions\DDDToolkit.EntityFramework.Extensions.csproj" />
-    <ProjectReference Include="..\DDDToolkit.Querying\DDDToolkit.Querying.csproj" />
     <ProjectReference Include="..\DDDToolkit.Utilities\DDDToolkit.Utilities.csproj" />
   </ItemGroup>
 

@@ -1,6 +1,5 @@
-﻿using DDDToolkit.Core;
+﻿using DDDToolkit.ApplicationLayer.Repositories;
 using DDDToolkit.Core.Interfaces;
-using DDDToolkit.Core.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 

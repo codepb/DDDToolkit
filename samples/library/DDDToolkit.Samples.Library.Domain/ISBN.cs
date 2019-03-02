@@ -7,15 +7,14 @@ namespace DDDToolkit.Samples.Library.Domain
 {
     public class ISBN : ValueObject
     {
-        private string _value;
+        private readonly string _value;
         public string Value => _value;
 
         protected ISBN() { }
 
         [JsonConstructor]
         public ISBN(string value)
-        {
-            
+        {            
             _value = value;
         }
 

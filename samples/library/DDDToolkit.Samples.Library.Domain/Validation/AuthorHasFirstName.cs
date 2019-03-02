@@ -1,11 +1,15 @@
-﻿using DDDToolkit.Querying;
+﻿using FluentQueries;
 
 namespace DDDToolkit.Samples.Library.Domain
 {
     public class AuthorHasFirstName : Query<Author>
     {
-        public AuthorHasFirstName() : base(Has(a => a.FirstName).Satisfying(x => !string.IsNullOrWhiteSpace(x)))
+        public AuthorHasFirstName()
         {
+            Define(
+                Has(a => a.FirstName)
+                .Satisfying(x => !string.IsNullOrWhiteSpace(x))
+            );
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using DDDToolkit.Querying;
+﻿using FluentQueries;
 using System;
 using System.Linq.Expressions;
 
@@ -6,8 +6,8 @@ namespace DDDToolkit.Validation
 {
     public class RuleBuilder<T, TProp>
     {
-        private Expression<Func<T, TProp>> _propertyAccessor;
-        private Action<Expression<Func<T, TProp>>, IQuery<TProp>, string> _ruleFor;
+        private readonly Expression<Func<T, TProp>> _propertyAccessor;
+        private readonly Action<Expression<Func<T, TProp>>, IQuery<TProp>, string> _ruleFor;
 
         public RuleBuilder(Expression<Func<T, TProp>> propertyAccessor, Action<Expression<Func<T, TProp>>, IQuery<TProp>, string> ruleFor)
         {
@@ -23,15 +23,14 @@ namespace DDDToolkit.Validation
 
         public RuleBuilder<T, TProp> HasRule(IQuery<TProp> query, string message = null)
         {
-            var newMessage = message == null ? $"{GetMemberInfo(_propertyAccessor).Member.Name} is invalid. Broken Rule was {query.GetType().Name}": message;
+            var newMessage = message ?? $"{GetMemberInfo(_propertyAccessor).Member.Name} is invalid. Broken Rule was {query.GetType().Name}";
             _ruleFor(_propertyAccessor, query, newMessage);
             return new RuleBuilder<T, TProp>(_propertyAccessor, _ruleFor);
         }
 
         private static MemberExpression GetMemberInfo(Expression method)
         {
-            var lambda = method as LambdaExpression;
-            if (lambda == null)
+            if (!(method is LambdaExpression lambda))
                 throw new ArgumentNullException("method");
 
             MemberExpression memberExpr = null;

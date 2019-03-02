@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -7,15 +7,21 @@
     <Product>DDDToolkit</Product>
     <Description>Validation rules to create validation classes to validate objects.</Description>
     <Copyright>Paul Burgess</Copyright>
-    <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/codepb/DDDToolkit</PackageProjectUrl>
     <PackageIconUrl>https://raw.githubusercontent.com/codepb/DDDToolkit/master/logo/logo.png</PackageIconUrl>
     <RepositoryUrl>https://github.com/codepb/DDDToolkit</RepositoryUrl>
     <PackageTags>DDD, Domain Driven Design, Validation</PackageTags>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>2.0.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DDDToolkit.Querying\DDDToolkit.Querying.csproj" />
+    <None Include="..\..\LICENSE" Pack="true" PackagePath=""/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentQueries" Version="1.1.1" />
   </ItemGroup>
 
 </Project>

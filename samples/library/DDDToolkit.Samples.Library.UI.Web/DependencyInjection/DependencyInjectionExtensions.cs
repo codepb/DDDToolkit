@@ -13,7 +13,7 @@ namespace DDDToolkit.Samples.Library.UI.Web.DependencyInjection
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
-            services.AddScoped<IApplicationService<Book, int>, BookService>();
+            services.AddScoped<BookService>();
             return services;
         }
 
