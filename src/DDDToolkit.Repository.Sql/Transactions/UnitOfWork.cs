@@ -18,11 +18,11 @@ namespace DDDToolkit.Repository.Sql.Transactions
 
         public override IRepository<T, TId> Repository<T, TId>()
         {
-            if (!IsRegistered<IRepository<T, TId>>())
+            if (!_objectResolver.IsRegistered<IRepository<T, TId>>())
             {
-                RegisterLazy<IRepository<T, TId>>(new Lazy<object>(() => new Repository<T, TId, TContext>(DbContext)));
+                _objectResolver.RegisterLazy<IRepository<T, TId>>(new Lazy<object>(() => new Repository<T, TId, TContext>(DbContext)));
             }
-            return Repository<IRepository<T, TId >>();
+            return Repository<IRepository<T, TId>>();
         }
 
         public override IReadableRepository<T, TId> ReadableRepository<T, TId>() => Repository<T, TId>();
@@ -34,6 +34,12 @@ namespace DDDToolkit.Repository.Sql.Transactions
             await PreSave();
             await DbContext.SaveChangesAsync();
             await PostSave();
+        }
+
+        public override async Task<ITransaction> BeginTransaction()
+        {
+            var transaction = await DbContext.Database.BeginTransactionAsync();
+            return new Transaction(transaction);
         }
 
         protected virtual Task PreSave()

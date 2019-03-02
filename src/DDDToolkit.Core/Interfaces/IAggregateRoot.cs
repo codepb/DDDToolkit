@@ -1,6 +1,8 @@
 ﻿namespace DDDToolkit.Core.Interfaces
 {
-    public interface IAggregateRoot<T> : IEntity<T>
+    public interface IAggregateRoot {}
+
+    public interface IAggregateRoot<T> : IEntity<T>, IAggregateRoot
     {
     }
 }

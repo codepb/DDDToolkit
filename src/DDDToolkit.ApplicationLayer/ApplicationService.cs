@@ -1,18 +1,25 @@
-﻿using DDDToolkit.ApplicationLayer.Repositories;
-using DDDToolkit.ApplicationLayer.Transactions;
-using DDDToolkit.Core.Interfaces;
+﻿using DDDToolkit.ApplicationLayer.Transactions;
+using System.Threading.Tasks;
 
 namespace DDDToolkit.ApplicationLayer
 {
-    public class ApplicationService<T, TId> where T : class, IAggregateRoot<TId>
+    public abstract class ApplicationService
     {
         protected readonly IUnitOfWork _unitOfWork;
-        protected readonly IRepository<T, TId> _repository;
 
-        public ApplicationService(IUnitOfWork unitOfWork)
+        protected ApplicationService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
-            _repository = unitOfWork.Repository<T, TId>();
-        }        
+        }
+
+        protected Task<ITransaction> BeginTransaction()
+        {
+            return _unitOfWork.BeginTransaction();
+        }
+
+        protected Task SaveChanges()
+        {
+            return _unitOfWork.Save();
+        }
     }
 }
