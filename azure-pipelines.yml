@@ -14,6 +14,7 @@ variables:
 
 steps:
   - script: dotnet build --configuration $(buildConfiguration)
+    workingDirectory: src
     displayName: "build $(buildConfiguration)"
 
   - task: DotNetCoreCLI@2
@@ -24,6 +25,7 @@ steps:
       arguments: "--configuration $(buildConfiguration)"
 
   - script: dotnet pack --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory) --no-build
+    workingDirectory: src
     displayName: "pack $(buildConfiguration)"
 
   - task: PublishBuildArtifacts@1
