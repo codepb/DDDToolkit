@@ -17,11 +17,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\..\LICENSE" Pack="true" PackagePath=""/>
+    <None Include="..\..\LICENSE" Pack="true" PackagePath="" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="FluentQueries" Version="1.1.1" />
+    <PackageReference Include="FluentQueries" Version="1.2.2" />
   </ItemGroup>
 
   <ItemGroup>
