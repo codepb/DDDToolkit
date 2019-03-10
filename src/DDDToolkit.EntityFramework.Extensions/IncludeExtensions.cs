@@ -1,7 +1,6 @@
 ﻿using DDDToolkit.Core;
 using DDDToolkit.Core.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Query;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +8,28 @@ using System.Reflection;
 
 namespace DDDToolkit.EntityFramework.Extensions
 {
+    /// <summary>
+    /// Extensions to include properties in Entity Framework.
+    /// </summary>
     public static class IncludeExtensions
     {
+        /// <summary>
+        /// <para>
+        /// Include every navigation property on the entity.
+        /// Navigate through every property that can be included, includes it,
+        /// then recursively repeats the operation for all children until the
+        /// whole property tree is included.
+        /// </para>
+        /// <para>
+        /// Note: do not use this if there are any cyclical references. Due to
+        /// the recursive nature, this will cause a stack overflow.
+        /// </para>
+        /// </summary>
+        /// <typeparam name="T">The type of entity.</typeparam>
+        /// <param name="source">The Queryable to operate on.</param>
+        /// <returns>A new Queryable with all child properties included in the Entity Framework query.</returns>
+        /// <exception cref="StackOverflowException">Thrown when there is a cyclic reference on the
+        /// entity, or any child entity.</exception>
         public static IQueryable<T> IncludeEverything<T>(this IQueryable<T> source) where T : class
         {
             var type = source.GetType();

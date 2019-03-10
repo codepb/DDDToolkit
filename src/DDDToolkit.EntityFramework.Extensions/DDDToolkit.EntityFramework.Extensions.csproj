@@ -16,8 +16,12 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <DocumentationFile>C:\Users\paulj\source\repos\DDDToolkit\src\DDDToolkit.EntityFramework.Extensions\DDDToolkit.EntityFramework.Extensions.xml</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
-    <None Include="..\..\LICENSE" Pack="true" PackagePath=""/>
+    <None Include="..\..\LICENSE" Pack="true" PackagePath="" />
   </ItemGroup>
 
   <ItemGroup>
