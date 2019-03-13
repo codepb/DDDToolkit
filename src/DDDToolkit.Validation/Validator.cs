@@ -10,9 +10,18 @@ namespace DDDToolkit.Validation
     {
         private IDictionary<object, ICollection<ValidationRule<T>>> _rules = new Dictionary<object, ICollection<ValidationRule<T>>>();
 
+        private static Expression<Func<TResult, bool>> WithParameter<TResult, TSource>(Expression<Func<TSource, bool>> source, Expression<Func<TResult, TSource>> selector)
+        {
+            // Replace parameter with body of selector
+            var replaceParameter = new ParameterVisitor(source.Parameters, selector.Body);
+            // This will be the new body of the expression
+            var newExpressionBody = replaceParameter.Visit(source.Body);
+            return Expression.Lambda<Func<TResult, bool>>(newExpressionBody, selector.Parameters);
+        }
+
         private void RuleFor<TProp>(Expression<Func<T, TProp>> propertyAccessor, IQuery<TProp> validationRule, string message)
         {
-            var rule = new Query<T>(validationRule.AsExpression().WithParameter(propertyAccessor));
+            var rule = new Query<T>(WithParameter(validationRule.AsExpression(), propertyAccessor));
             var compiledPropertyAccessor = propertyAccessor.Compile();
             if (!_rules.ContainsKey(compiledPropertyAccessor))
             {
