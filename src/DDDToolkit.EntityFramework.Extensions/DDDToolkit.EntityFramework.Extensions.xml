@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DDDToolkit.EntityFramework.Extensions</name>
+    </assembly>
+    <members>
+        <member name="T:DDDToolkit.EntityFramework.Extensions.IncludeExtensions">
+            <summary>
+            Extensions to include properties in Entity Framework.
+            </summary>
+        </member>
+        <member name="M:DDDToolkit.EntityFramework.Extensions.IncludeExtensions.IncludeEverything``1(System.Linq.IQueryable{``0})">
+            <summary>
+            <para>
+            Include every navigation property on the entity.
+            Navigate through every property that can be included, includes it,
+            then recursively repeats the operation for all children until the
+            whole property tree is included.
+            </para>
+            <para>
+            Note: do not use this if there are any cyclical references. Due to
+            the recursive nature, this will cause a stack overflow.
+            </para>
+            </summary>
+            <typeparam name="T">The type of entity.</typeparam>
+            <param name="source">The Queryable to operate on.</param>
+            <returns>A new Queryable with all child properties included in the Entity Framework query.</returns>
+            <exception cref="T:System.StackOverflowException">Thrown when there is a cyclic reference on the
+            entity, or any child entity.</exception>
+        </member>
+        <member name="T:DDDToolkit.EntityFramework.Extensions.QueryableExtensions">
+            <summary>
+            Extensions on Queryables
+            </summary>
+        </member>
+        <member name="M:DDDToolkit.EntityFramework.Extensions.QueryableExtensions.ToReadOnlyCollectionAsync``1(System.Linq.IQueryable{``0},System.Threading.CancellationToken)">
+            <summary>
+            Converts a Queryable to a <see cref="T:System.Collections.Generic.IReadOnlyCollection`1"/>.
+            </summary>
+            <typeparam name="T">The type of entity for the IQueryable.</typeparam>
+            <param name="queryable">The IQueryable to convert.</param>
+            <param name="cancellationToken">A cancellation token to use for the operation.</param>
+            <returns>A Task returning a <see cref="T:System.Collections.Generic.IReadOnlyCollection`1"/> from the IQueryable.</returns>
+        </member>
+    </members>
+</doc>

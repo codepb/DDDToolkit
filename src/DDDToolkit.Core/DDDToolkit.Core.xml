@@ -1,0 +1,256 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DDDToolkit.Core</name>
+    </assembly>
+    <members>
+        <member name="T:DDDToolkit.Core.AggregateRoot`1">
+            <summary>
+            <para>
+            A semantic difference from <see cref="T:DDDToolkit.Core.Interfaces.IEntity`1"/>, the
+            aggregate root represents an entity that is resposible for
+            handling all interactions with the aggregate.
+            </para>
+            <para>
+            Behaviour is identical to <see cref="T:DDDToolkit.Core.Interfaces.IEntity`1"/>, and
+            equality is defined by the two aggregate roots being of the
+            same type, with Ids that are equal.
+            </para>
+            <para>
+            In addition to the behaviour of <see cref="T:DDDToolkit.Core.Interfaces.IEntity`1"/>, the
+            aggregate root should be used by repositories, services, etc to
+            help control the points of interactions with entities.
+            </para>
+            </summary>
+            <typeparam name="T">The type of the Id for the Aggregate Root.</typeparam>
+        </member>
+        <member name="T:DDDToolkit.Core.Entity`1">
+            <summary>
+            <para>
+            An entity as defined in Domain Driven Design. Entities are objects
+            that are identified by a thread of continuity and identity.
+            </para>
+            <para>
+            The entity provides an identifier that is used for equality. Any
+            two entities should be equal if they are of the same type and have
+            the same value for the identifier
+            </para>
+            </summary>
+            <typeparam name="T">The type used for the Id of the Entity</typeparam>
+        </member>
+        <member name="P:DDDToolkit.Core.Entity`1.Id">
+            <summary>
+            The identifier of the entity. Used for equality.
+            Two entities of the same type with the same value
+            for Id should be considered equal.
+            </summary>
+        </member>
+        <member name="M:DDDToolkit.Core.Entity`1.Equals(System.Object)">
+            <summary>
+            <para>
+            Determines whether the specified object is equal to
+            the current object.
+            </para>
+            <para>
+            Two entities are considered equal if they are the same type
+            and have Ids that are equal.
+            </para>
+            </summary>
+            <param name="obj">The object to compare with the current object.</param>
+            <returns>True if the objects are equal, false otherwise.</returns>
+        </member>
+        <member name="M:DDDToolkit.Core.Entity`1.Equals(DDDToolkit.Core.Interfaces.IEntity{`0})">
+            <summary>
+            <para>
+            Determines whether the specified object is equal to
+            the current object.
+            </para>
+            <para>
+            Two entities are considered equal if they are the same type
+            and have Ids that are equal.
+            </para>
+            </summary>
+            <param name="other">The object to compare with the current object.</param>
+            <returns>True if the objects are equal, false otherwise.</returns>
+        </member>
+        <member name="M:DDDToolkit.Core.Entity`1.GetHashCode">
+            <summary>
+            Serves as the default hash function.
+            </summary>
+            <returns>The hash of the entity.</returns>
+        </member>
+        <member name="M:DDDToolkit.Core.Entity`1.op_Equality(DDDToolkit.Core.Entity{`0},DDDToolkit.Core.Entity{`0})">
+            <summary>
+            <para>
+            Determines whether the specified object is equal to
+            the current object.
+            </para>
+            <para>
+            Two entities are considered equal if they are the same type
+            and have Ids that are equal.
+            </para>
+            </summary>
+            <param name="entity1">The first entity to compare.</param>
+            <param name="entity2">The second entity to compare.</param>
+            <returns>True if the objects are equal, false otherwise.</returns>
+        </member>
+        <member name="M:DDDToolkit.Core.Entity`1.op_Inequality(DDDToolkit.Core.Entity{`0},DDDToolkit.Core.Entity{`0})">
+            <summary>
+            <para>
+            Determines whether the specified object is not equal to
+            the current object.
+            </para>
+            <para>
+            Two entities are considered not equal if they are different types
+            or have Ids that are not equal.
+            </para>
+            </summary>
+            <param name="entity1">The first entity to compare.</param>
+            <param name="entity2">The second entity to compare.</param>
+            <returns>True if the objects are not equal, false otherwise.</returns>
+        </member>
+        <member name="T:DDDToolkit.Core.Interfaces.IAggregateRoot`1">
+            <summary>
+            <para>
+            A semantic difference from <see cref="T:DDDToolkit.Core.Interfaces.IEntity`1"/>, the
+            aggregate root represents an entity that is resposible for
+            handling all interactions with the aggregate.
+            </para>
+            <para>
+            Behaviour is identical to <see cref="T:DDDToolkit.Core.Interfaces.IEntity`1"/>, and
+            equality is defined by the two aggregate roots being of the
+            same type, with Ids that are equal.
+            </para>
+            <para>
+            In addition to the behaviour of <see cref="T:DDDToolkit.Core.Interfaces.IEntity`1"/>, the
+            aggregate root should be used by repositories, services, etc to
+            help control the points of interactions with entities.
+            </para>
+            </summary>
+            <typeparam name="T">The type of the Id for the Aggregate Root.</typeparam>
+        </member>
+        <member name="T:DDDToolkit.Core.Interfaces.IEntity`1">
+            <summary>
+            <para>
+            An entity as defined in Domain Driven Design. Entities are objects
+            that are identified by a thread of continuity and identity.
+            </para>
+            <para>
+            The entity provides an identifier that is used for equality. Any
+            two entities should be equal if they are of the same type and have
+            the same value for the identifier
+            </para>
+            </summary>
+            <typeparam name="T">The type used for the Id of the Entity</typeparam>
+        </member>
+        <member name="P:DDDToolkit.Core.Interfaces.IEntity`1.Id">
+            <summary>
+            The identifier of the entity. Used for equality.
+            Two entities of the same type with the same value
+            for Id should be considered equal.
+            </summary>
+        </member>
+        <member name="T:DDDToolkit.Core.Interfaces.IValueObject">
+            <summary>
+            <para>
+            An object that has no conceptual identity. It is
+            defined by its properties
+            </para>
+            <para>
+            Two value objects are identical if they are the same type
+            and all of their properties are equal.
+            </para>
+            <para>
+            It is recommended that you make value objects immutable.
+            As a value object is defined by its properties, you should
+            not change the values on the value object, but instead
+            create a new value object with the desired properties
+            a new object.
+            </para>
+            </summary>
+        </member>
+        <member name="T:DDDToolkit.Core.ValueObject">
+            <summary>
+            <para>
+            An object that has no conceptual identity. It is
+            defined by its properties
+            </para>
+            <para>
+            Two value objects are identical if they are the same type
+            and all of their properties are equal.
+            </para>
+            <para>
+            It is recommended that you make value objects immutable.
+            As a value object is defined by its properties, you should
+            not change the values on the value object, but instead
+            create a new value object with the desired properties
+            a new object.
+            </para>
+            </summary>
+        </member>
+        <member name="M:DDDToolkit.Core.ValueObject.Equals(System.Object)">
+            <summary>
+            <para>
+            Determines whether the specified object is equal to
+            the current object.
+            </para>
+            <para>
+            Two value objects are considered equal if they are the same type
+            and have all properties equal.
+            </para>
+            </summary>
+            <param name="obj">The object to compare with the current object.</param>
+            <returns>True if the objects are equal, false otherwise.</returns>
+        </member>
+        <member name="M:DDDToolkit.Core.ValueObject.GetHashCode">
+            <summary>
+            Serves as the default hash function.
+            </summary>
+            <returns>The hash of the entity.</returns>
+        </member>
+        <member name="M:DDDToolkit.Core.ValueObject.Equals(DDDToolkit.Core.Interfaces.IValueObject)">
+            <summary>
+            <para>
+            Determines whether the specified object is equal to
+            the current object.
+            </para>
+            <para>
+            Two value objects are considered equal if they are the same type
+            and have all properties equal.
+            </para>
+            </summary>
+            <param name="other">The object to compare with the current object.</param>
+            <returns>True if the objects are equal, false otherwise.</returns>
+        </member>
+        <member name="M:DDDToolkit.Core.ValueObject.op_Equality(DDDToolkit.Core.ValueObject,DDDToolkit.Core.ValueObject)">
+            <summary>
+            <para>
+            Determines whether the specified object is equal to
+            the current object.
+            </para>
+            <para>
+            Two value objects are considered equal if they are the same type
+            and have all properties equal.
+            </para>
+            </summary>
+            <param name="x">The first value object to compare.</param>
+            <param name="y">The second value object to compare.</param>
+            <returns>True if the objects are equal, false otherwise.</returns>
+        </member>
+        <member name="M:DDDToolkit.Core.ValueObject.op_Inequality(DDDToolkit.Core.ValueObject,DDDToolkit.Core.ValueObject)">
+            <summary>
+            <para>
+            Determines whether the specified object is not equal to
+            the current object.
+            </para>
+            <para>
+            Two value objects are considered not equal if they are different types
+            or do not have all properties equal.
+            </para>
+            </summary>
+            <param name="x">The first value object to compare.</param>
+            <param name="y">The second value object to compare.</param>
+            <returns>True if the objects are equal, false otherwise.</returns>
+        </member>
+    </members>
+</doc>
