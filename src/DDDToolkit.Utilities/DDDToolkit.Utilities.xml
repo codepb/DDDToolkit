@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DDDToolkit.Utilities</name>
+    </assembly>
+    <members>
+        <member name="T:DDDToolkit.Utilities.Extensions.TaskExtensions">
+            <summary>
+            Extensions to Tasks.
+            </summary>
+        </member>
+        <member name="M:DDDToolkit.Utilities.Extensions.TaskExtensions.ToReadOnlyCollection``1(System.Threading.Tasks.Task{System.Collections.Generic.List{``0}})">
+            <summary>
+            Coverts a Task of a <see cref="T:System.Collections.Generic.List`1"/> to a Task of a <see cref="T:System.Collections.Generic.IReadOnlyCollection`1"/>.
+            </summary>
+            <typeparam name="T">The type of entity in the List.</typeparam>
+            <param name="task">The tssk to convert.</param>
+            <returns>The Task of a List converted to a Task of a IReadOnlyCollection.</returns>
+        </member>
+        <member name="M:DDDToolkit.Utilities.Extensions.TaskExtensions.ConvertTask``1(System.Threading.Tasks.Task{``0})">
+            <summary>
+            Begin converting a Task of a type to a Task of a compatiable type.
+            </summary>
+            <typeparam name="T">The current type of the Task.</typeparam>
+            <param name="task">The Task to convert.</param>
+            <returns>A <see cref="T:DDDToolkit.Utilities.Extensions.TaskExtensions.TaskConverter`1"/> which enables selecting a Task to convert to.</returns>
+        </member>
+        <member name="T:DDDToolkit.Utilities.Extensions.TaskExtensions.TaskConverter`1">
+            <summary>
+            A class that can convert a Task of one type, to a Task of a compatible type.
+            </summary>
+            <typeparam name="T">The current type of the Task.</typeparam>
+        </member>
+        <member name="M:DDDToolkit.Utilities.Extensions.TaskExtensions.TaskConverter`1.#ctor(System.Threading.Tasks.Task{`0})">
+            <summary>
+            Initialises a Task converter that will be able to convert
+            the supplied Task to a Task of a compatible type.
+            </summary>
+            <param name="task">The Task to convert.</param>
+        </member>
+        <member name="M:DDDToolkit.Utilities.Extensions.TaskExtensions.TaskConverter`1.ToTaskOf``1">
+            <summary>
+            Creates and returns a new Task of the type specified from the
+            Task that was supplied to the class.
+            </summary>
+            <typeparam name="TResult">The type to convert the Task to.</typeparam>
+            <returns>A new Task of the type supplied.</returns>
+        </member>
+        <member name="M:DDDToolkit.Utilities.Extensions.TaskExtensions.TaskConverter`1.To``1">
+            <summary>
+            <para>
+            Creates and returns a new Task of the type specified from the
+            Task that was supplied to the class.
+            </para>
+            <para>
+            An alias for <see cref="M:DDDToolkit.Utilities.Extensions.TaskExtensions.TaskConverter`1.ToTaskOf``1"/>
+            </para>
+            </summary>
+            <typeparam name="TResult">The type to convert the Task to.</typeparam>
+            <returns>A new Task of the type supplied.</returns>
+        </member>
+    </members>
+</doc>
