@@ -21,6 +21,17 @@ namespace DDDToolkit.ApplicationLayer
         {
             return _unitOfWork.BeginTransaction();
         }
+
+        protected Task<T> GetById<T, TId>(TId id, string[] onlyIncludePaths = null, CancellationToken cancellationToken = default(CancellationToken)) where T : class, IAggregateRoot<TId>
+        {
+            return ReadableRepository<T, TId>().GetById(id, onlyIncludePaths, cancellationToken);
+        }
+
+        protected Task<IReadOnlyCollection<T>> Query<T, TId>(QueryOptions queryOptions = null, CancellationToken cancellationToken = default(CancellationToken)) where T : class, IAggregateRoot<TId>
+        {
+            return ReadableRepository<T, TId>().Query(queryOptions, cancellationToken);
+        }
+
         protected Task<IReadOnlyCollection<T>> Query<T, TId>(IQuery<T> query, QueryOptions queryOptions = null, CancellationToken cancellationToken = default(CancellationToken)) where T : class, IAggregateRoot<TId>
         {
             return ReadableRepository<T, TId>().Query(query, queryOptions, cancellationToken);
